@@ -147,7 +147,7 @@ DEPENDENCIES
   bootstrap-sass (~> 2.0.1)
   chunky_png (~> 1.2.5)
   coffee-rails (~> 3.2.1)
-  devise
+  devise (~> 2.0.4)
   jquery-rails
   omniauth (~> 1.0.3)
   rails (= 3.2.1)

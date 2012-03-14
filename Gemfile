@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.1'
-gem 'devise'
+gem 'devise', '~>2.0.4'
 gem 'omniauth', '~>1.0.3'
 
 # Bundle edge Rails instead:
@@ -11,6 +11,7 @@ gem 'sqlite3'
 gem 'chunky_png', '~> 1.2.5'
 gem 'twitter', '~> 2.1.0'
 gem 'bootstrap-sass', '~> 2.0.1'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
