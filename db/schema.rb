@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120314004450) do
+ActiveRecord::Schema.define(:version => 20120314213123) do
+
+  create_table "badges", :force => true do |t|
+    t.string   "title"
+    t.string   "image_url"
+    t.text     "description"
+    t.integer  "times_used"
+    t.integer  "follower_reach"
+    t.integer  "user_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -26,6 +37,9 @@ ActiveRecord::Schema.define(:version => 20120314004450) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "badge_id"
+    t.string   "avatar_url"
+    t.string   "notablee_url"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
