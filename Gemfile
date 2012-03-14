@@ -8,7 +8,9 @@ gem 'omniauth', '~>1.0.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'png', '~> 1.2.0'
+gem 'chunky_png', '~> 1.2.5'
+gem 'twitter', '~> 2.1.0'
+gem 'bootstrap-sass', '~> 2.0.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
