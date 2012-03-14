@@ -1,6 +1,8 @@
 Notablee::Application.routes.draw do
   devise_for :users
   
+  match "users/sign_in" => 'devise/sessions#new'
+  
   get "static_pages/home"
   
   root :to => "static_pages#home"
