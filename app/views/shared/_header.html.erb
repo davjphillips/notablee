@@ -1,0 +1,20 @@
+<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+         
+					
+					<%= link_to "notablee", root_path, :class => "brand" %>
+				
+          <div class="nav-collapse">
+            <ul class="nav">
+							<% if user_signed_in? %>
+							<li><%= link_to "Badges", root_path %></li>
+							<li><%= link_to "Sign out", root_path %></li>
+              <% else %>
+							<li><%= link_to "Badges", root_path %></li>
+              <li><%= link_to "Sign in", root_path, :class => "pull-right" %></li>
+							<% end %>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>

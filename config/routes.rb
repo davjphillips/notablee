@@ -1,8 +1,11 @@
 Notablee::Application.routes.draw do
-  
   devise_for :users
-
-  root :to => "devise/sessions#new"
+  
+  get "static_pages/home"
+  
+  root :to => "static_pages#home"
+    
+  #root :to => "devise/sessions#new"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

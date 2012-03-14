@@ -7,9 +7,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-<%= yield %>
+	
+	<%= render :partial => "shared/header" %>	
 
+	<div class="container container-body">
+		<% if notice %>
+			<p class="alert alert-success">
+				<a class="close" data-dismiss="alert">&times;</a>
+					<%= notice %>
+			</p>
+		<% end %>
+	
+		<% if alert %>
+			<p class="alert alert-error">
+				<a class="close" data-dismiss="alert">&times;</a>
+					<%= alert %>
+			</p>
+		<% end %>
+
+		<%= yield %>
+
+		<%= render :partial => "shared/footer" %>
+	</div>
 </body>
 </html>
