@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe "static_pages/home.html.erb" do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "links to the Sign in page" do
+  end
 end
