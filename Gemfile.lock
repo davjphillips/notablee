@@ -131,7 +131,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
-  devise
+  devise (~> 2.0.4)
   jquery-rails
   omniauth (~> 1.0.3)
   rails (= 3.2.1)

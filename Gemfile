@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.1'
-gem 'devise'
+gem 'devise', '~>2.0.4'
 gem 'omniauth', '~>1.0.3'
 
 # Bundle edge Rails instead:
