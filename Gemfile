@@ -3,13 +3,14 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.1'
 gem 'devise', '~>2.0.4'
 gem 'omniauth', '~>1.0.3'
+gem 'omniauth-twitter'
+
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
 gem 'chunky_png', '~> 1.2.5'
-gem 'twitter', '~> 2.1.0'
 gem 'bootstrap-sass', '~> 2.0.1'
 
 
