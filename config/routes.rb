@@ -1,9 +1,10 @@
 Notablee::Application.routes.draw do
   match '/auth/:provider/callback' => 'authentications#create'
   resources :authentications
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => 'registrations'}
   resources :badges, :only => [:index]
   match "users/sign_in" => 'devise/sessions#new'
+    
   
   get "static_pages/home"
   
