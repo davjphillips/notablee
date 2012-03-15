@@ -5,6 +5,6 @@ FactoryGirl.define do
     sequence(:title) {|n| "badge-#{n}"}
     image_url "http://google.com/whatever.jpg"
     description "my describer"
-    user_id 1
+    owner_id 1
   end
 end
