@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120315005654) do
+ActiveRecord::Schema.define(:version => 20120315010053) do
+
+  create_table "badgehistories", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "badge_id"
+    t.datetime "dropped_at"
+    t.integer  "user_followers_snapshot"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
 
   create_table "badges", :force => true do |t|
     t.string   "title"
