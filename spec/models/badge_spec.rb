@@ -18,21 +18,42 @@ describe Badge do
   end
   
   it 'requires a unique title' do
-    Badge.create! :title => "KONY2012", :image_url => "http://example.com", :description => "This is a badge description."
-    b = Badge.new :title => "KONY2012", :image_url => "http://example.com", :description => "This is a badge description."
+    Badge.create! :title => "KONY2012", :image_url => "http://example.com", 
+                  :description => "This is a badge description.", :user_id => 1
+    b = Badge.new :title => "KONY2012", :image_url => "http://example.com",
+                  :description => "This is a badge description.", :user_id => 1
     b.should_not be_valid
     b.errors[:title].should_not be_empty
   end
   
+  it 'has an administrator (created by)' do
+    should_not be_valid
+    subject.errors[:user_id].should_not be_empty
+  end
+  
   context "with users" do
-    it 'keeps track of how many times a badge is used' do
+    it 'has a number of users' do
       b = Badge.create :title => "KONY2012", :image_url => "http://example.com", :description => "This is a badge description."
       b.users.count.should be_zero
       b.user_count.should == 0
     end
-  
+    
+    it "can increase in number of users"
     it "aggregates the sum of all badge users' followers"
-    it 'has an administrator (created by)'
   
+  end
+  
+  context "user changing badges" do
+    it "badge user count drops when user changes badges" do
+      b1 = FactoryGirl.create(:badge)
+      b2 = FactoryGirl.create(:badge)
+      u1 = FactoryGirl.create(:user)
+      b2.users << u1
+      
+      expect {
+        b1.users << u1
+      }.to change(b2,:user_count).by(-1)      
+    end
+    
   end
 end

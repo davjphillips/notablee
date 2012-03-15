@@ -56,5 +56,10 @@ module Notablee
     config.assets.version = '1.0'
     
     config.assets.initialize_on_precompile = false
+    
+    config.generators do |g|
+        g.test_framework :rspec, :fixture => true, :views => false, :fixture_replacement => :factory_girl
+    end
+    
   end
 end
