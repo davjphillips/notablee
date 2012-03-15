@@ -21,4 +21,12 @@ describe BadgesController do
       assigns(:badges).should == [popular_badge, unpopular_badge]
     end
   end
+  
+  describe "#show" do
+    it "displays an individual badge" do
+      new_badge = Factory(:badge)
+      get :show
+      response.should render_template "badges/show"
+    end
+  end
 end

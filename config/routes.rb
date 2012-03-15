@@ -6,13 +6,7 @@ Notablee::Application.routes.draw do
   match "users/sign_in" => 'devise/sessions#new'
   
   get "static_pages/home"
-  
-  # devise_scope :user do
-  #   match '/signup' => 'devise/registration#new'
-  #   match '/signin' => 'devise/sessions#new'
-  #   match '/signout' => 'devise/sessions#destroy'
-  # end
-  
+
   root :to => "static_pages#home"
     
   #root :to => "devise/sessions#new"
