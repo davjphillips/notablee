@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   
   belongs_to :badge
   has_many :owned_badges, :foreign_key => :owner_id
+  has_many :authentications
 end

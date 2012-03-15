@@ -1,4 +1,8 @@
 Notablee::Application.routes.draw do
+  get "authentications/create"
+
+  get "authentications/destroy"
+
   devise_for :users
   
   resources :badges, :only => [:index]
