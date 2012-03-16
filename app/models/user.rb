@@ -9,4 +9,13 @@ class User < ActiveRecord::Base
   
   belongs_to :badge
   has_many :owned_badges, :foreign_key => :owner_id
+  has_many :authentications
+  
+  def apply_omniauth(omniauth)
+    authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+  end
+  
+  def password_required?
+    (authentications.empty? || !password.blank?) && super
+  end
 end
