@@ -1,33 +1,52 @@
 require 'spec_helper'
 
 describe BadgesController do
+  include Devise::TestHelpers
   
   describe "#create" do
     it ""
   end
   
   describe "#index" do
-    it "displays index of badges" do
-      new_badge = Factory(:badge)
-      get :index
-      assigns(:badges).should include(new_badge)
-    end
+    context "badges display" do
+        it "displays index of badges" do
+        new_badge = Factory(:badge)
+        get :index
+        assigns(:badges).should include(new_badge)
+      end
     
-    it "renders the index page" do
-      get :index
-      response.should render_template "badges/index"
-    end
+      it "renders the index page" do
+        get :index
+        response.should render_template "badges/index"
+      end
     
-    it "sorts the badges by popularity" do
-      unpopular_badge = Factory(:badge)
-      popular_badge   = Factory(:badge)
-      user1           = Factory(:user, :badge_id => 2)
-      user2           = Factory(:user, :badge_id => 2)
-      user3           = Factory(:user, :badge_id => 2)
-      user4           = Factory(:user, :badge_id => 1)
+      it "sorts the badges by popularity" do
+        unpopular_badge = Factory(:badge)
+        popular_badge   = Factory(:badge)
+        user1           = Factory(:user, :badge_id => 2)
+        user2           = Factory(:user, :badge_id => 2)
+        user3           = Factory(:user, :badge_id => 2)
+        user4           = Factory(:user, :badge_id => 1)
 
-      get :index
-      assigns(:badges).should == [popular_badge, unpopular_badge]
+        get :index
+        assigns(:badges).should == [popular_badge, unpopular_badge]
+      end
+    end
+    
+    context "avatar display" do
+      it "displays default avatar images" do
+        get :index
+        assigns(:display_avatar).should eq("default-pro.png")
+      end
+      
+      it "displays current user's avatar" do
+        user1 = Factory(:user, :avatar_url => "david.png")
+        sign_in(user1)
+        get :index
+        assigns(:display_avatar).should eq(user1.avatar_url)
+      end
+        
+      
     end
   end
   

@@ -14,7 +14,12 @@
 							<ul class="nav pull-right">
 			           <li class="divider-vertical"></li>
 			           <li class="dropdown">
-			             <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
+			             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										<%= image_tag @display_avatar, :class => "header-avatar" %>
+										<span class="header-username"><%= current_user.username %></span> 
+										<b class="caret">											
+										</b>
+										</a>
 			             <ul class="dropdown-menu">
 			               <li><%= link_to "Edit Account", edit_user_registration_path %></li>
 			               <li class="divider"></li>
