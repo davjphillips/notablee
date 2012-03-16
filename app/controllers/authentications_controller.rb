@@ -19,7 +19,8 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = "Authentication Successful"
       redirect_to root_path
     else
-      user = User.new
+      i = rand(1000000).to_s + Time.new.to_i.inspect
+      user = User.new(:email => "user-#{i}@notablee.com")
       user.apply_omniauth(omniauth)
       if user.save
         flash[:notice] = "Signed in successfully."
