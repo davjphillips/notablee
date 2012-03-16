@@ -34,4 +34,7 @@ Notablee::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:twitter] = {:provider => 'twitter', :uid => '123545'}
 end
