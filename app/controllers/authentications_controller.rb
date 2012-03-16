@@ -5,18 +5,22 @@ class AuthenticationsController < ApplicationController
   end
   
   def create
+    
+    #render :text => request.env["omniauth.auth"].to_yaml
+    
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
+    
     if authentication
       flash[:notice] = "Authentication Successful with Twitter"
-      puts authentication.user
       sign_in_and_redirect(:user, authentication.user)
     elsif current_user
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       flash[:notice] = "Authentication Successful"
       redirect_to root_path
     else
-      user = User.new
+      i = rand(1000000).to_s + Time.new.to_i.inspect
+      user = User.new(:email => "user-#{i}@notablee.com")
       user.apply_omniauth(omniauth)
       
       if user.save

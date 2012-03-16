@@ -9,8 +9,10 @@
 	</div>
 	
   <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
+  <%= f.email_field :email %>
+	<span class="note">This is a dummy email. We don't really need it, if we do, we'll ask you to change it! :)</span>
+	</div>
+	
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
 
