@@ -4,6 +4,7 @@ gem 'rails', '3.2.1'
 gem 'devise', '~>2.0.4'
 gem 'omniauth', '~>1.0.3'
 gem 'omniauth-twitter'
+gem 'twitter', '~>2.1.1'
 
 
 # Bundle edge Rails instead:
