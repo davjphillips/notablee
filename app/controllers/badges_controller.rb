@@ -1,7 +1,7 @@
 class BadgesController < ApplicationController
   
   def index
-    @badges = Badge.all.sort_by!{ |badge| badge.times_used }.reverse
+    @badges = Badge.all.sort_by!{ |badge| badge.users.count }.reverse
   end
 
   def show

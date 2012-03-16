@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe BadgesController do
   
+  describe "#create" do
+    it ""
+  end
+  
   describe "#index" do
     it "displays index of badges" do
       new_badge = Factory(:badge)
@@ -15,8 +19,13 @@ describe BadgesController do
     end
     
     it "sorts the badges by popularity" do
-      unpopular_badge = Factory(:badge, :times_used => 0)
-      popular_badge   = Factory(:badge, :times_used => 4)
+      unpopular_badge = Factory(:badge)
+      popular_badge   = Factory(:badge)
+      user1           = Factory(:user, :badge_id => 2)
+      user2           = Factory(:user, :badge_id => 2)
+      user3           = Factory(:user, :badge_id => 2)
+      user4           = Factory(:user, :badge_id => 1)
+
       get :index
       assigns(:badges).should == [popular_badge, unpopular_badge]
     end

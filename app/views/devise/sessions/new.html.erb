@@ -12,7 +12,8 @@
   <% end -%>
 
   <div><%= f.submit "Sign in" %></div>
-	<br />
 <% end %>
-<%#= link_to "Sign in with Twitter", new_authentications_path, :class => "btn"%>
+<%= link_to "Sign in with Twitter", auth_twitter_path, :class => "btn"%>
+<br />
+
 <%= render "links" %>

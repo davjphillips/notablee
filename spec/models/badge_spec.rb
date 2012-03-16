@@ -23,14 +23,7 @@ describe Badge do
     
     invalid_badge.should_not be_valid
     invalid_badge.should have(1).error_on(:title)
-    
-        # 
-        # Badge.create! :title => "KONY2012", :image_url => "http://example.com", 
-        #               :description => "This is a badge description.", :user_id => 1
-        # b = Badge.new :title => "KONY2012", :image_url => "http://example.com",
-        #               :description => "This is a badge description.", :user_id => 1
-        # b.should_not be_valid
-        # b.errors[:title].should_not be_empty
+
   end
   
   it 'has an administrator (created by)' do

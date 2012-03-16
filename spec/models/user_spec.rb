@@ -1,10 +1,8 @@
 require 'spec_helper'
 
 describe User do
-  it "users should be able to create an account" do
-    expect {
-      User.create
-    }.to change(User.count).by(1)
+  it "users should be able to create an account with only twitter (no email or password req'd)" do
+  
   end
   
   it "users should be able to sign in"
