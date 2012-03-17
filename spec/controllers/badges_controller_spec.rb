@@ -44,11 +44,19 @@ describe BadgesController do
         sign_in(user1)
         get :index
         assigns(:display_avatar).should eq(user1.avatar_url)
-      end
-        
-      
+      end    
+    end
+  
+  describe "#generate_notablee" do
+    it "creates a new notablee in the database" do
+      user3 = Factory(:user, :avatar_url => "andrew.png", :badge_id => 1, :notablee_url => " ")
+      badge3 = Factory(:badge)
+      get :show
+      assigns(:notablee).should eq(user3.notablee_url)
+      #user3.generate_notablee(badge3.image_url).should eq(user3.notablee_url)  
     end
   end
+end
   
   describe "#show" do
     it "displays an individual badge" do
@@ -58,3 +66,12 @@ describe BadgesController do
     end
   end
 end
+
+# 
+# @notablee_url = @avatar_url + @image_url + Chunky stuff 
+# @avatar_url   = Chunky
+# @image_url    = Chunky
+# compose!
+# @notablee_url.save
+
+

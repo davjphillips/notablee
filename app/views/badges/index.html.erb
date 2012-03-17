@@ -9,14 +9,15 @@
         </thead>
 				<% @badges.each do |badge| %>
         <tbody>
-          <tr>
-            <td>
+          <tr width="940">
+            <td width="11.5%">
 						<%= image_tag @display_avatar, :class => "default-profile-index"%>
 						<%= image_tag badge.image_url, :class => "badge-index" %>
 						</td>
-            <td style="padding-top: 20px"><%= badge.title %></td>
-            <td style="padding-top: 20px"><%= badge.description %></td>
-            <td style="padding-top: 20px"><%= badge.title %></td>
+            <td width="17%" style="padding-top: 20px"><%= badge.title %></td>
+            <td width="54.5%" style="padding-top: 20px"><%= badge.description %></td>
+            <td width="17%" style="padding-top: 20px"><span class="well" style="font-size:18px;  ;padding-top: 20px"><b>24,023,656</b></span></td>
+            
           </tr>
 					<% end %>     
 </table>
