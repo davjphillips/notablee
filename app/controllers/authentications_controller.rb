@@ -9,7 +9,6 @@ class AuthenticationsController < ApplicationController
     
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-    create_authentcaiotn
     
     if authentication
       flash[:notice] = "Authentication Successful with Twitter"
