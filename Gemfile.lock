@@ -187,5 +187,5 @@ DEPENDENCIES
   rspec-rails (~> 2.8.1)
   sass-rails (~> 3.2.3)
   sqlite3
-  twitter
+  twitter (~> 2.1.1)
   uglifier (>= 1.0.3)

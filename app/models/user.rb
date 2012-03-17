@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :login
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :login, :avatar_url
   
   # Virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'
@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
      conditions = warden_conditions.dup
      login = conditions.delete(:login)
      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.strip.downcase }]).first
+  end
+  
+  def self.get_user_image(username)
+    Twitter.profile_image(username, :size => 'reasonably_small')
   end
   
   protected

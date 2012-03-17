@@ -7,4 +7,5 @@ describe User do
   
   it "users should be able to sign in"
   it "users should be able to sign out"
+  
 end
