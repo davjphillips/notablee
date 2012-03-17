@@ -1,15 +1,15 @@
 class AuthenticationsController < ApplicationController
-  
+
   def index
     @authentications = current_user.authentications if current_user
   end
   
   def create
-    
-    #render :text => request.env["omniauth.auth"].to_yaml
+    # render :text => request.env["omniauth.auth"].to_yaml
     
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
+    create_authentcaiotn
     
     if authentication
       flash[:notice] = "Authentication Successful with Twitter"
@@ -20,9 +20,10 @@ class AuthenticationsController < ApplicationController
       redirect_to root_path
     else
       i = rand(1000000).to_s + Time.new.to_i.inspect
-      user = User.new(:email => "user-#{i}@notablee.com")
+      username = omniauth['info']['nickname']
+      user_image = User.get_user_image(username)
+      user = User.new(:email => "user-#{i}@notablee.com", :username => username, :avatar_url => user_image)
       user.apply_omniauth(omniauth)
-      
       if user.save
         flash[:notice] = "Signed in successfully."
         sign_in_and_redirect(:user, user)
