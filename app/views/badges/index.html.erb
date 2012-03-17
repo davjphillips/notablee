@@ -1,1 +1,26 @@
+
 <%= render @badges %>
+
+<br />
+<table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Badge</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Follower Reach</th>
+          </tr>
+        </thead>
+				<% @badges.each do |badge| %>
+        <tbody>
+          <tr>
+            <td>
+						<%= image_tag @display_avatar, :class => "default-profile-index"%>
+						<%= image_tag badge.image_url, :class => "badge-index" %>
+						</td>
+            <td style="padding-top: 20px"><%= badge.title %></td>
+            <td style="padding-top: 20px"><%= badge.description %></td>
+            <td style="padding-top: 20px"><%= badge.title %></td>
+          </tr>
+					<% end %>     
+</table>
