@@ -1,3 +1,4 @@
+<br />
 <table class="table table-condensed">
         <thead>
           <tr>
@@ -12,11 +13,15 @@
           <tr width="940">
             <td width="11.5%">
 							<%= image_tag @display_avatar, :class => "default-profile-index" %>
-							<%= link_to(image_tag(badge.image_url, :class => "badge-index"), badge_path(badge.id)) %>
+							<% if user_signed_in? %>
+							<%= link_to(image_tag(badge.image_url, :class => "badge-index"), badge_path(badge.id))%>
+							<% else %>
+							<%= link_to(image_tag(badge.image_url, :class => "badge-index"), "#", :onclick => 'alert("You need to be signed in to do that, friend.")')%>
+							<% end %>
 						</td>
             <td width="17%" style="padding-top: 20px"><%= badge.title %></td>
             <td width="54.5%" style="padding-top: 20px"><%= badge.description %></td>
-            <td width="17%" style="padding-top: 20px"><span class="well" style="font-size:18px;  ;padding-top: 20px"><b>24,023,656</b></span></td>
+            <td width="17%" style="padding-top: 20px"><b>24,023,656</b></td>
             
           </tr>
 					<% end %>

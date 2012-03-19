@@ -14,7 +14,7 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = "Authentication Successful with Twitter"
       sign_in_and_redirect(:user, authentication.user)
     elsif current_user
-      current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
+      current_user.authentication.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       flash[:notice] = "Authentication Successful"
       redirect_to root_path
     else

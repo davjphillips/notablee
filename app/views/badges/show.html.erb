@@ -1,23 +1,6 @@
-<table class="table table-condensed">
-	<thead>
-	  <tr>
-	    <th>Badge</th>
-	    <th>Title</th>
-	    <th>Description</th>
-	    <th>Follower Reach</th>
-	  </tr>
-	</thead>
-
-	<tbody>
-		<tr width="940">
-			<td width="11.5%">
-				<%= link_to image_tag @display_avatar, :class => "default-profile-index" %>
-				<%= link_to(image_tag(@badge.image_url, :class => "badge-index"), badge_path(@badge.id), :method => 'put') %>
-			</td>
-
-			<td width="17%" style="padding-top: 20px"><%= @badge.title %></td>
-			<td width="54.5%" style="padding-top: 20px"><%= @badge.description %></td>
-			<td width="17%" style="padding-top: 20px"><span class="well" style="font-size:18px;  ;padding-top: 20px"><b>24,023,656</b></span></td>  
-		</tr>
-	</tbody>
-</table>
+<br />
+<%= link_to image_tag @display_avatar %>
+<%= link_to(image_tag(@badge.image_url, :class => "show_badge"), badge_path(@badge.id), :method => 'put') %>
+<p>
+<%= link_to "Use this Badge", "#",  :class=> "btn btn-large btn-success" %>
+</p>

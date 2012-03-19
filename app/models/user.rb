@@ -35,8 +35,11 @@ class User < ActiveRecord::Base
   end
   
   def self.update_profile_image(image)
-    Twitter.update(image)
+    #Twitter.update(image)
     #Twitter.update_profile_image(image)
+  end
+  
+  def self.create_notablee(avatar_url, badge_url)
   end
   
   protected

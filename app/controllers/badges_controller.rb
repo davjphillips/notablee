@@ -16,7 +16,6 @@ class BadgesController < ApplicationController
   end
 
   def update
-    User.update_profile_image("gasdjkfaosdjfoasdjfoasiudf asdflkasjdflasjdf lasjdf  asdfjsaodfjasldfjasldj")
     User.update_profile_image('jessica_alba.png') 
   end
 end
