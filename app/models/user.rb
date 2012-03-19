@@ -17,7 +17,11 @@ class User < ActiveRecord::Base
   has_many :authentications
   
   def apply_omniauth(omniauth)
-    authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+    authentications.build(:provider => omniauth['provider'], 
+                          :uid => omniauth['uid'], 
+                          :oauth_token => omniauth['credentials']['token'], 
+                          :oauth_secret => omniauth['credentials']['secret']
+                          )
   end
   
   def password_required?
@@ -39,8 +43,14 @@ class User < ActiveRecord::Base
     #Twitter.update_profile_image(image)
   end
   
+
   def self.create_notablee(avatar_url, badge_url)
-    chunkypng
+
+  end
+  
+  def update_profile_image(img, token, secret)
+     setup_twitter(token, secret)
+     Twitter.update_profile_image(img)
   end
   
   protected
@@ -84,6 +94,14 @@ class User < ActiveRecord::Base
    def self.find_record(login)
      where(["username = :value OR email = :value", { :value => login }]).first
    end
-  
+
+   def setup_twitter(token, secret)
+          Twitter.configure do |config|
+             config.consumer_key = 'ccTPXN2szUdt88PDTAmNXQ'  # needs to come from config
+             config.consumer_secret = 'STJIVcvCE6MgUeQjck13gCEKOvxT1WaTdGURdVllIM' # Also from config
+             config.oauth_token = token #'523792847-OI558v8yWQnK7EyXjyvL3reWwc5NYlx9zSWIp7nM' << notablee credentials
+             config.oauth_token_secret = secret #'sOoWNMUZhZYMQMBhRaXHBVZ37zk8WeJ2qIPTJmRy4k' << notablee credentials
+           end  
+   end
   
 end
