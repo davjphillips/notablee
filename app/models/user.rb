@@ -34,6 +34,11 @@ class User < ActiveRecord::Base
     Twitter.profile_image(username, :size => 'reasonably_small')
   end
   
+  def self.update_profile_image(image)
+    Twitter.update(image)
+    #Twitter.update_profile_image(image)
+  end
+  
   protected
 
    # Attempt to find a user by it's email. If a record is found, send new

@@ -3,9 +3,7 @@ require 'spec_helper'
 describe BadgesController do
   include Devise::TestHelpers
   
-  describe "#create" do
-    it ""
-  end
+  describe "#create"
   
   describe "#index" do
     context "badges display" do
@@ -32,6 +30,7 @@ describe BadgesController do
         assigns(:badges).should == [popular_badge, unpopular_badge]
       end
     end
+  end
     
     context "avatar display" do
       it "displays default avatar images" do
@@ -49,23 +48,31 @@ describe BadgesController do
   
   describe "#generate_notablee" do
     it "creates a new notablee in the database" do
-      user3 = Factory(:user, :avatar_url => "andrew.png", :badge_id => 1, :notablee_url => " ")
-      badge3 = Factory(:badge)
+      user1 = Factory(:user, :avatar_url => "andrew.png", :badge_id => 1, :notablee_url => " ")
+      badge1 = Factory(:badge)
       get :show
-      assigns(:notablee).should eq(user3.notablee_url)
+      assigns(:notablee).should eq(user1.notablee_url)
       #user3.generate_notablee(badge3.image_url).should eq(user3.notablee_url)  
+    end
+  end
+  
+  describe "#show" do
+    it "renders the show page related to the correct badge" do
+      new_badge = Factory(:badge)
+      user1 = Factory(:user, :avatar_url => "andrew.png", :badge_id => 1, :notablee_url => " ")
+      get :show
+      response.should render_template badge_path(new_badge.id)
+    end
+    
+    it "assigns a new badge to an avatar" do
+      new_badge = Factory(:badge)
+      user1     = Factory(:user)
+      get :show
+      user1.badge_id.should eq(new_badge.id)
     end
   end
 end
   
-  describe "#show" do
-    it "displays an individual badge" do
-      new_badge = Factory(:badge)
-      get :show
-      response.should render_template "badges/show"
-    end
-  end
-end
 
 # 
 # @notablee_url = @avatar_url + @image_url + Chunky stuff 
