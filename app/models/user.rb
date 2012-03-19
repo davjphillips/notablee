@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
   end
   
   def self.create_notablee(avatar_url, badge_url)
+    chunkypng
   end
   
   protected
