@@ -16,12 +16,26 @@ class User < ActiveRecord::Base
   has_many :owned_badges, :foreign_key => :owner_id
   has_many :authentications
   
+  def self.apply_params(omniauth, user)
+    i = rand(1000000).to_s + Time.new.to_i.inspect
+    username = omniauth['info']['nickname']
+    user_image_url = User.get_user_image_url(username)
+    user.email = "user-#{i}@notablee.com"
+    user.username = username
+    user.avatar_url = user_image_url
+    user.apply_omniauth(omniauth)
+  end
+  
   def apply_omniauth(omniauth)
     authentications.build(:provider => omniauth['provider'], 
                           :uid => omniauth['uid'], 
                           :oauth_token => omniauth['credentials']['token'], 
                           :oauth_secret => omniauth['credentials']['secret']
                           )
+  end
+  
+  def self.get_user_image_url(username)
+    Twitter.profile_image(username, :size => 'reasonably_small')
   end
   
   def password_required?
@@ -32,10 +46,6 @@ class User < ActiveRecord::Base
      conditions = warden_conditions.dup
      login = conditions.delete(:login)
      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.strip.downcase }]).first
-  end
-  
-  def self.get_user_image(username)
-    Twitter.profile_image(username, :size => 'reasonably_small')
   end
   
   def self.update_profile_image(image)

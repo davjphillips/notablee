@@ -13,18 +13,16 @@ class AuthenticationsController < ApplicationController
     if authentication
       flash[:notice] = "Authentication Successful with Twitter"
       sign_in_and_redirect(:user, authentication.user)
-    elsif current_user
+    elsif current_user #this requires that a user sign into notablee before creating an authentication. 
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       authentication.oauth_token = omniauth['credentials']['token']
       authentication.oauth_secret = omniauth['credentials']['secret']
       flash[:notice] = "Authentication Successful"
       redirect_to root_path
     else
-      i = rand(1000000).to_s + Time.new.to_i.inspect
-      username = omniauth['info']['nickname']
-      user_image = User.get_user_image(username)
-      user = User.new(:email => "user-#{i}@notablee.com", :username => username, :avatar_url => user_image)
-      user.apply_omniauth(omniauth)
+      user = User.new
+      User.apply_params(omniauth, user)
+
       if user.save
         flash[:notice] = "Signed in successfully."
         sign_in_and_redirect(:user, user)
