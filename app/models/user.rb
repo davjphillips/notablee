@@ -48,20 +48,26 @@ class User < ActiveRecord::Base
      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.strip.downcase }]).first
   end
   
-  def self.update_profile_image(image)
-    #Twitter.update(image)
-    #Twitter.update_profile_image(image)
-  end
-  
-
-  def self.create_notablee(avatar_url, badge_url)
-
-  end
-  
   def update_profile_image(img, token, secret)
-     setup_twitter(token, secret)
-     Twitter.update_profile_image(img)
+    img.pos = 0
+    setup_twitter(token, secret)
+    Twitter.update_profile_image(img)
+    File.delete("#{self.username}.png")
+
   end
+  
+  def create_notablee_url
+    original_avatar = MiniMagick::Image.open(self.avatar_url)
+    notablee_avatar = original_avatar.composite(MiniMagick::Image.open("app/assets/images/" + Badge.find_by_id(self.badge_id).image_url))
+    notablee_avatar.write "#{self.username}.png"
+    @notablee_url = File.open("#{self.username}.png")
+    
+    token = self.authentications.first.oauth_token
+    secret = self.authentications.first.oauth_secret
+    
+    update_profile_image(@notablee_url, token, secret)
+  end
+  
   
   protected
 
@@ -91,7 +97,6 @@ class User < ActiveRecord::Base
 
      unless record
        record = new
-
        required_attributes.each do |key|
          value = attributes[key]
          record.send("#{key}=", value)
@@ -105,13 +110,12 @@ class User < ActiveRecord::Base
      where(["username = :value OR email = :value", { :value => login }]).first
    end
 
-   def setup_twitter(token, secret)
-          Twitter.configure do |config|
-             config.consumer_key = 'ccTPXN2szUdt88PDTAmNXQ'  # needs to come from config
-             config.consumer_secret = 'STJIVcvCE6MgUeQjck13gCEKOvxT1WaTdGURdVllIM' # Also from config
-             config.oauth_token = token #'523792847-OI558v8yWQnK7EyXjyvL3reWwc5NYlx9zSWIp7nM' << notablee credentials
-             config.oauth_token_secret = secret #'sOoWNMUZhZYMQMBhRaXHBVZ37zk8WeJ2qIPTJmRy4k' << notablee credentials
-           end  
+  def setup_twitter(token, secret)
+    Twitter.configure do |config|
+       config.consumer_key = 'ccTPXN2szUdt88PDTAmNXQ'  # needs to come from config
+       config.consumer_secret = 'STJIVcvCE6MgUeQjck13gCEKOvxT1WaTdGURdVllIM' # Also from config
+       config.oauth_token = token #'523792847-OI558v8yWQnK7EyXjyvL3reWwc5NYlx9zSWIp7nM' << notablee credentials
+       config.oauth_token_secret = secret #'sOoWNMUZhZYMQMBhRaXHBVZ37zk8WeJ2qIPTJmRy4k' << notablee credentials
+     end
    end
-  
 end
