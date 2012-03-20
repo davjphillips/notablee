@@ -16,14 +16,17 @@ class User < ActiveRecord::Base
   has_many :owned_badges, :foreign_key => :owner_id
   has_many :authentications
   
-  def self.apply_params(omniauth, user)
+  def self.new_user_with_auth(omniauth)
+    user = User.new
     i = rand(1000000).to_s + Time.new.to_i.inspect
     username = omniauth['info']['nickname']
     user_image_url = User.get_user_image_url(username)
+    
     user.email = "user-#{i}@notablee.com"
     user.username = username
     user.avatar_url = user_image_url
     user.apply_omniauth(omniauth)
+    user
   end
   
   def apply_omniauth(omniauth)

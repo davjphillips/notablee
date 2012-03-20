@@ -23,7 +23,10 @@ describe AuthenticationsController do
       context 'when current_user does not exist' do
         before :each do
           request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter]
-          @auth = Authentication.create!(:provider => 'twitter', :uid => '123545')
+          user = User.new(:email => 'b@ba.com', :password => 'blahblah')
+          User.stub(:new_user_with_auth).and_return(user)
+          
+          #@auth = Authentication.create!(:provider => 'twitter', :uid => '123545')
         end
         
         it "creates a new user" do

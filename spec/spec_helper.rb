@@ -11,7 +11,8 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 OmniAuth.config.test_mode = true
 OmniAuth.config.mock_auth[:twitter] = {
     'provider' => 'twitter',
-    'uid' => '123545'
+    'uid' => '123545',
+    'info' => {'nickname' => 'testaccount'}
   }
 RSpec.configure do |config|
   # ## Mock Framework

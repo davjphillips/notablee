@@ -8,6 +8,7 @@ class AuthenticationsController < ApplicationController
     # render :text => request.env["omniauth.auth"].to_yaml
     
     omniauth = request.env["omniauth.auth"]
+    
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     
     if authentication
@@ -24,13 +25,12 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = "Authentication Successful"
       redirect_to root_path
     else
-      user = User.new
-      User.apply_params(omniauth, user)
-
+      user = User.new_user_with_auth(omniauth)
       if user.save
         flash[:notice] = "Signed in successfully."
         sign_in_and_redirect(:user, user)
       else
+        puts "did not save successfully #{user.errors.full_messages}"
         session[:omniauth] = omniauth.except('extra')
         redirect_to new_user_registration_path
       end
