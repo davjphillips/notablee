@@ -1,6 +1,7 @@
 <div id="home-header" style="margin-top:20px">
 	<h1>Let's change the world</h1>
-		<h1>one picture at a time<a class="btn btn-primary" style="font-size:18px; margin-left:1%; margin-bottom:1%; padding:1%">Start Here &raquo;</a></h1>
+		<h1>one picture at a time.</h1>
+	
 	
 	<center>
 	<div style="margin-top:5%;">
@@ -19,11 +20,16 @@
 	        </li>
 					<li>
 	          <a href="#" class="thumbnail">
-	            <img src="http://placehold.it/320x320" alt="">
+	            <%#= image_tag "jessica-alba-320.png", :size => "320x320"  %>
+							<img src="http://placehold.it/320x320" alt="">
+	            
 							<h3>33,542,002 followers</h3>
 	          </a>
 	        </li>
 	      </ul>
+	
+					<br />
+					<%= link_to "Start Here!", badges_path, :class => "btn btn-primary", :style => "font-size:18px; margin-left:0%; margin-bottom:0%; padding-left:45%; padding-right:45%; padding-top:1%; padding-bottom:1%;" %>
 	</div>
 	</center>
 </div>

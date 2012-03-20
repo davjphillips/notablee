@@ -38,17 +38,6 @@ class User < ActiveRecord::Base
     Twitter.profile_image(username, :size => 'reasonably_small')
   end
   
-  def self.update_profile_image(image)
-    #Twitter.update(image)
-    #Twitter.update_profile_image(image)
-  end
-  
-
-  def self.create_notablee(avatar_url, badge_url)
-
-  end
-  
-  
   def update_profile_image(img, token, secret)
     img.pos = 0
     setup_twitter(token, secret)
@@ -66,9 +55,6 @@ class User < ActiveRecord::Base
     secret = self.authentications.first.oauth_secret
     
     update_profile_image(@notablee_url, token, secret)
-    
-    #     
-    # Badge.find_by_id(Megan.badge_id).image_url 
   end
   
   

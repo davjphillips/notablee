@@ -13,12 +13,18 @@ class AuthenticationsController < ApplicationController
     if authentication
       flash[:notice] = "Authentication Successful with Twitter"
       sign_in_and_redirect(:user, authentication.user)
-    elsif current_user
-      current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
-      authentication.oauth_token = omniauth['credentials']['token']
-      authentication.oauth_secret = omniauth['credentials']['secret']
-      flash[:notice] = "Authentication Successful"
-      redirect_to root_path
+      
+      username = omniauth['info']['nickname']
+      user_image = User.get_user_image(username)
+      current_user.avatar_url = user_image
+      current_user.save
+      
+    # elsif current_user
+    #   current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
+    #   authentication.oauth_token = omniauth['credentials']['token']
+    #   authentication.oauth_secret = omniauth['credentials']['secret']
+    #   flash[:notice] = "Authentication Successful"
+    #   redirect_to root_path
     else
       i = rand(1000000).to_s + Time.new.to_i.inspect
       username = omniauth['info']['nickname']
