@@ -1,0 +1,805 @@
+Desktop			Library			Team4			~
+Documents		Movies			book_titles.rb
+Downloads		Music			jsattend.rb
+dbc02:~ apprentice$ cd Documents/
+dbc02:Documents apprentice$ ls
+99bottles.rb		Team2			notablee		test2.rb
+Colloquy Transcripts	Team4_todo_app		rpn_calculator.rb	tests.rb
+Dictionary-david_ed.rb	david_rpn_calculator.rb	temp			workin.rb
+Impressi		devbootcamp_skin	temp_obj.rb		xmldocument.rb
+JSAttend		examples.rb		test			xmldocument_rspec.rb
+Socrates Stuff		hnclone			test.rb
+dbc02:Documents apprentice$ cd notablee/
+Using: /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee
+dbc02:notablee apprentice$ git pull
+remote: Counting objects: 82, done.
+remote: Compressing objects: 100% (16/16), done.
+remote: Total 46 (delta 33), reused 40 (delta 27)
+Unpacking objects: 100% (46/46), done.
+From github.com:davjphillips/notablee
+   ffa99cd..ad31491  master     -> origin/master
+Updating ffa99cd..ad31491
+Fast-forward
+ app/controllers/application_controller.rb     |   13 ++--
+ app/controllers/authentications_controller.rb |    1 -
+ app/controllers/badges_controller.rb          |   15 ++++-
+ app/controllers/static_pages_controller.rb    |    2 +-
+ app/helpers/application_helper.rb             |    2 +
+ app/models/user.rb                            |    5 ++
+ app/views/badges/index.html.erb               |   11 +--
+ app/views/badges/show.html.erb                |   24 ++++++++-
+ app/views/badges/update.html.erb              |    1 +
+ app/views/layouts/application.html.erb        |   56 +++++++++---------
+ app/views/shared/_header.html.erb             |   76 ++++++++++++-------------
+ config/initializers/twitter.rb                |    4 +-
+ config/routes.rb                              |    5 +-
+ spec/controllers/badges_controller_spec.rb    |   25 +++++---
+ 14 files changed, 142 insertions(+), 98 deletions(-)
+ create mode 100644 app/views/badges/update.html.erb
+dbc02:notablee apprentice$ mate .
+dbc02:notablee apprentice$ rake db:reset
+-- create_table("authentications", {:force=>true})
+   -> 0.1579s
+-- create_table("badgehistories", {:force=>true})
+   -> 0.0040s
+-- create_table("badges", {:force=>true})
+   -> 0.0037s
+-- create_table("users", {:force=>true})
+   -> 0.0229s
+-- add_index("users", ["email"], {:name=>"index_users_on_email", :unique=>true})
+   -> 0.0028s
+-- add_index("users", ["reset_password_token"], {:name=>"index_users_on_reset_password_token", :unique=>true})
+   -> 0.0020s
+-- initialize_schema_migrations_table()
+   -> 0.0043s
+-- assume_migrated_upto_version(20120316030738, ["/Users/apprentice/Documents/notablee/db/migrate"])
+   -> 0.0515s
+it worked!
+dbc02:notablee apprentice$ rake spec
+/Users/apprentice/.rvm/rubies/ruby-1.9.3-p0/bin/ruby -S rspec ./spec/controllers/authentications_controller_spec.rb ./spec/controllers/badges_controller_spec.rb ./spec/controllers/registrations_controller_spec.rb ./spec/controllers/static_pages_controller_spec.rb ./spec/helpers/authentications_helper_spec.rb ./spec/helpers/badges_helper_spec.rb ./spec/helpers/registrations_helper_spec.rb ./spec/helpers/static_pages_helper_spec.rb ./spec/models/authentication_spec.rb ./spec/models/badge_spec.rb ./spec/models/badgehistory_spec.rb ./spec/models/user_spec.rb ./spec/requests/authentications_spec.rb ./spec/views/authentications/create.html.erb_spec.rb ./spec/views/authentications/destroy.html.erb_spec.rb ./spec/views/static_pages/home.html.erb_spec.rb
+FF.....FFFF*****....F.**.*.****.
+
+Pending:
+  AuthenticationsHelper add some examples to (or delete) /Users/apprentice/Documents/notablee/spec/helpers/authentications_helper_spec.rb
+    # No reason given
+    # ./spec/helpers/authentications_helper_spec.rb:14
+  BadgesHelper add some examples to (or delete) /Users/apprentice/Documents/notablee/spec/helpers/badges_helper_spec.rb
+    # No reason given
+    # ./spec/helpers/badges_helper_spec.rb:14
+  RegistrationsHelper add some examples to (or delete) /Users/apprentice/Documents/notablee/spec/helpers/registrations_helper_spec.rb
+    # No reason given
+    # ./spec/helpers/registrations_helper_spec.rb:14
+  StaticPagesHelper add some examples to (or delete) /Users/apprentice/Documents/notablee/spec/helpers/static_pages_helper_spec.rb
+    # No reason given
+    # ./spec/helpers/static_pages_helper_spec.rb:14
+  Authentication add some examples to (or delete) /Users/apprentice/Documents/notablee/spec/models/authentication_spec.rb
+    # No reason given
+    # ./spec/models/authentication_spec.rb:4
+  Badge with users can increase in number of users
+    # Not yet implemented
+    # ./spec/models/badge_spec.rb:41
+  Badge with users aggregates the sum of all badge users' followers
+    # Not yet implemented
+    # ./spec/models/badge_spec.rb:42
+  Badgehistory add some examples to (or delete) /Users/apprentice/Documents/notablee/spec/models/badgehistory_spec.rb
+    # No reason given
+    # ./spec/models/badgehistory_spec.rb:4
+  User users should be able to sign in
+    # Not yet implemented
+    # ./spec/models/user_spec.rb:8
+  User users should be able to sign out
+    # Not yet implemented
+    # ./spec/models/user_spec.rb:9
+  authentications/create.html.erb add some examples to (or delete) /Users/apprentice/Documents/notablee/spec/views/authentications/create.html.erb_spec.rb
+    # No reason given
+    # ./spec/views/authentications/create.html.erb_spec.rb:4
+  authentications/destroy.html.erb add some examples to (or delete) /Users/apprentice/Documents/notablee/spec/views/authentications/destroy.html.erb_spec.rb
+    # No reason given
+    # ./spec/views/authentications/destroy.html.erb_spec.rb:4
+
+Failures:
+
+  1) AuthenticationsController GET 'create' returns http success
+     Failure/Error: get 'create'
+     NoMethodError:
+       undefined method `[]' for nil:NilClass
+     # ./app/controllers/authentications_controller.rb:11:in `create'
+     # ./spec/controllers/authentications_controller_spec.rb:7:in `block (3 levels) in <top (required)>'
+
+  2) AuthenticationsController GET 'destroy' returns http success
+     Failure/Error: get 'destroy'
+     NoMethodError:
+       undefined method `authenticate' for nil:NilClass
+     # ./app/controllers/authentications_controller.rb:37:in `destroy'
+     # ./spec/controllers/authentications_controller_spec.rb:14:in `block (3 levels) in <top (required)>'
+
+  3) BadgesController#generate_notablee creates a new notablee in the database
+     Failure/Error: assigns(:notablee).should eq(user1.notablee_url)
+       
+       expected: " "
+            got: nil
+       
+       (compared using ==)
+     # ./spec/controllers/badges_controller_spec.rb:54:in `block (3 levels) in <top (required)>'
+
+  4) BadgesController#show renders the show page related to the correct badge
+     Failure/Error: response.should render_template badge_path(new_badge.id)
+       expecting <"/badges/1"> but rendering with <"badges/show, layouts/application">
+     # ./spec/controllers/badges_controller_spec.rb:64:in `block (3 levels) in <top (required)>'
+
+  5) BadgesController#show assigns a new badge to an avatar
+     Failure/Error: user1.badge_id.should eq(new_badge.id)
+       
+       expected: 1
+            got: nil
+       
+       (compared using ==)
+     # ./spec/controllers/badges_controller_spec.rb:71:in `block (3 levels) in <top (required)>'
+
+  6) StaticPagesController GET 'home' returns http success
+     Failure/Error: get 'home'
+     NoMethodError:
+       undefined method `authenticate' for nil:NilClass
+     # ./app/controllers/application_controller.rb:6:in `get_display_avatar'
+     # ./app/controllers/static_pages_controller.rb:4:in `home'
+     # ./spec/controllers/static_pages_controller_spec.rb:7:in `block (3 levels) in <top (required)>'
+
+  7) Badge has an administrator (created by)
+     Failure/Error: subject.errors[:user_id].should_not be_empty
+       expected empty? to return false, got true
+     # ./spec/models/badge_spec.rb:31:in `block (2 levels) in <top (required)>'
+
+Finished in 0.58388 seconds
+32 examples, 7 failures, 12 pending
+
+Failed examples:
+
+rspec ./spec/controllers/authentications_controller_spec.rb:6 # AuthenticationsController GET 'create' returns http success
+rspec ./spec/controllers/authentications_controller_spec.rb:13 # AuthenticationsController GET 'destroy' returns http success
+rspec ./spec/controllers/badges_controller_spec.rb:50 # BadgesController#generate_notablee creates a new notablee in the database
+rspec ./spec/controllers/badges_controller_spec.rb:60 # BadgesController#show renders the show page related to the correct badge
+rspec ./spec/controllers/badges_controller_spec.rb:67 # BadgesController#show assigns a new badge to an avatar
+rspec ./spec/controllers/static_pages_controller_spec.rb:6 # StaticPagesController GET 'home' returns http success
+rspec ./spec/models/badge_spec.rb:29 # Badge has an administrator (created by)
+rake aborted!
+/Users/apprentice/.rvm/rubies/ruby-1.9.3-p0/bin/ruby -S rspec ./spec/controllers/authentications_controller_spec.rb ./spec/controllers/badges_controller_spec.rb ./spec/controllers/registrations_controller_spec.rb ./spec/controllers/static_pages_controller_spec.rb ./spec/helpers/authentications_helper_spec.rb ./spec/helpers/badges_helper_spec.rb ./spec/helpers/registrations_helper_spec.rb ./spec/helpers/static_pages_helper_spec.rb ./spec/models/authentication_spec.rb ./spec/models/badge_spec.rb ./spec/models/badgehistory_spec.rb ./spec/models/user_spec.rb ./spec/requests/authentications_spec.rb ./spec/views/authentications/create.html.erb_spec.rb ./spec/views/authentications/destroy.html.erb_spec.rb ./spec/views/static_pages/home.html.erb_spec.rb failed
+
+Tasks: TOP => spec
+(See full trace by running task with --trace)
+dbc02:notablee apprentice$ git pull
+Already up-to-date.
+dbc02:notablee apprentice$ git checkout -b david_jon_twitter_branch
+M	app/assets/stylesheets/custom.css.scss
+M	app/controllers/authentications_controller.rb
+M	app/controllers/badges_controller.rb
+M	app/models/user.rb
+M	app/views/badges/index.html.erb
+M	app/views/badges/show.html.erb
+M	app/views/layouts/application.html.erb
+M	app/views/static_pages/home.html.erb
+Switched to a new branch 'david_jon_twitter_branch'
+dbc02:notablee apprentice$ git pull
+lYou asked me to pull without telling me which branch you
+want to merge with, and 'branch.david_jon_twitter_branch.merge' in
+your configuration file does not tell me, either. Please
+specify which branch you want to use on the command line and
+try again (e.g. 'git pull <repository> <refspec>').
+See git-pull(1) for details.
+
+If you often merge with the same branch, you may want to
+use something like the following in your configuration file:
+
+    [branch "david_jon_twitter_branch"]
+    remote = <nickname>
+    merge = <remote-ref>
+
+    [remote "<nickname>"]
+    url = <url>
+    fetch = <refspec>
+
+See git-config(1) for details.
+dbc02:notablee apprentice$ git add .
+dbc02:notablee apprentice$ git push "first commit"
+fatal: 'first commit' does not appear to be a git repository
+fatal: The remote end hung up unexpectedly
+dbc02:notablee apprentice$ git commit -m "first commit"
+[david_jon_twitter_branch f70b2fa] first commit
+ 8 files changed, 28 insertions(+), 33 deletions(-)
+ rewrite app/views/badges/show.html.erb (100%)
+dbc02:notablee apprentice$ git push
+Everything up-to-date
+dbc02:notablee apprentice$ brew install imagemagick
+==> Installing imagemagick dependency: jpeg
+==> Downloading http://www.ijg.org/files/jpegsrc.v8c.tar.gz
+######################################################################## 100.0%
+==> ./configure --prefix=/usr/local/Cellar/jpeg/8c
+==> make install
+/usr/local/Cellar/jpeg/8c: 18 files, 1.4M, built in 23 seconds
+==> Installing imagemagick dependency: libtiff
+==> Downloading http://download.osgeo.org/libtiff/tiff-3.9.5.zip
+######################################################################## 100.0%
+==> ./configure --prefix=/usr/local/Cellar/libtiff/3.9.5 --mandir=/usr/local/Cellar/libtiff/3.9.5/share/man
+==> make install
+/usr/local/Cellar/libtiff/3.9.5: 236 files, 3.6M, built in 29 seconds
+==> Installing imagemagick dependency: little-cms
+==> Downloading http://www.littlecms.com/1/lcms-1.19.tar.gz
+######################################################################## 100.0%
+==> ./configure --prefix=/usr/local/Cellar/little-cms/1.19 --disable-debug
+==> make install
+/usr/local/Cellar/little-cms/1.19: 21 files, 872K, built in 21 seconds
+==> Installing imagemagick dependency: jasper
+==> Downloading http://slackware.sukkology.net/packages/jasper/jasper-1.900.1.zip
+######################################################################## 100.0%
+==> Patching
+patching file src/libjasper/jpc/jpc_dec.c
+==> ./configure --disable-debug --enable-shared --prefix=/usr/local/Cellar/jasper/1.900.1 --mandir=/usr/local/Cellar/jasper/1.900.1/share/man
+==> make install
+/usr/local/Cellar/jasper/1.900.1: 34 files, 1.0M, built in 34 seconds
+==> Installing imagemagick
+==> Downloading http://downloads.sf.net/project/machomebrew/Bottles/imagemagick-6.7.1-1-bottle.tar.gz
+######################################################################## 100.0%
+==> Pouring imagemagick-6.7.1-1.bottle.tar.gz
+==> Caveats
+Some tools will complain unless the ghostscript fonts are installed to:
+  /usr/local/share/ghostscript/fonts
+==> Summary
+/usr/local/Cellar/imagemagick/6.7.1-1: 1390 files, 32M
+dbc02:notablee apprentice$ bundle
+Fetching source index for https://rubygems.org/
+Using rake (0.9.2.2) 
+Using i18n (0.6.0) 
+Using multi_json (1.1.0) 
+Using activesupport (3.2.1) 
+Using builder (3.0.0) 
+Using activemodel (3.2.1) 
+Using erubis (2.7.0) 
+Using journey (1.0.3) 
+Using rack (1.4.1) 
+Using rack-cache (1.2) 
+Using rack-test (0.6.1) 
+Using hike (1.2.1) 
+Using tilt (1.3.3) 
+Using sprockets (2.1.2) 
+Using actionpack (3.2.1) 
+Using mime-types (1.17.2) 
+Using polyglot (0.3.3) 
+Using treetop (1.4.10) 
+Using mail (2.4.4) 
+Using actionmailer (3.2.1) 
+Using arel (3.0.2) 
+Using tzinfo (0.3.32) 
+Using activerecord (3.2.1) 
+Using activeresource (3.2.1) 
+Using addressable (2.2.7) 
+Using bcrypt-ruby (3.0.1) 
+Using bootstrap-sass (2.0.1) 
+Using bundler (1.0.21) 
+Using nokogiri (1.5.2) 
+Using ffi (1.0.11) 
+Using childprocess (0.3.1) 
+Using rubyzip (0.9.6.1) 
+Using selenium-webdriver (2.20.0) 
+Using xpath (0.1.4) 
+Using capybara (1.1.2) 
+Using chunky_png (1.2.5) 
+Using coffee-script-source (1.2.0) 
+Using execjs (1.3.0) 
+Using coffee-script (2.2.0) 
+Using rack-ssl (1.3.2) 
+Using json (1.6.5) 
+Using rdoc (3.12) 
+Using thor (0.14.6) 
+Using railties (3.2.1) 
+Using coffee-rails (3.2.2) 
+Using orm_adapter (0.0.6) 
+Using warden (1.1.1) 
+Using devise (2.0.4) 
+Using diff-lcs (1.1.3) 
+Using factory_girl (2.3.2) 
+Using factory_girl_rails (1.4.0) 
+Using multipart-post (1.1.5) 
+Using faraday (0.7.6) 
+Using hashie (1.2.0) 
+Using jquery-rails (2.0.1) 
+Installing subexec (0.2.1) 
+Installing mini_magick (3.4) 
+Using oauth (0.4.5) 
+Using omniauth (1.0.3) 
+Using omniauth-oauth (1.0.1) 
+Using omniauth-twitter (0.0.8) 
+Using rails (3.2.1) 
+Using rspec-core (2.8.0) 
+Using rspec-expectations (2.8.0) 
+Using rspec-mocks (2.8.0) 
+Using rspec (2.8.0) 
+Using rspec-rails (2.8.1) 
+Using sass (3.1.15) 
+Using sass-rails (3.2.4) 
+Using simple_oauth (0.1.5) 
+Using sqlite3 (1.3.5) 
+Using twitter (2.1.1) 
+Using uglifier (1.2.3) 
+Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
+dbc02:notablee apprentice$ git branch
+  david_jon_twitter_branch
+* master
+dbc02:notablee apprentice$ git pull
+remote: Counting objects: 46, done.
+remote: Compressing objects: 100% (9/9), done.
+remote: Total 25 (delta 16), reused 25 (delta 16)
+Unpacking objects: 100% (25/25), done.
+From github.com:davjphillips/notablee
+   e81b53c..81e76cc  master     -> origin/master
+Updating e81b53c..81e76cc
+error: Your local changes to the following files would be overwritten by merge:
+	app/models/user.rb
+Please, commit your changes or stash them before you can merge.
+Aborting
+dbc02:notablee apprentice$ git add .
+dbc02:notablee apprentice$ git stash
+Saved working directory and index state WIP on master: e81b53c checking changes
+HEAD is now at e81b53c checking changes
+dbc02:notablee apprentice$ git pull
+Updating e81b53c..81e76cc
+Fast-forward
+ .DS_Store                                          |  Bin 12292 -> 12292 bytes
+ app/.DS_Store                                      |  Bin 6148 -> 6148 bytes
+ app/assets/.DS_Store                               |  Bin 6148 -> 6148 bytes
+ app/assets/images/david.jpeg                       |  Bin 0 -> 51023 bytes
+ app/assets/images/hellyea.jpg                      |  Bin 0 -> 6389 bytes
+ app/controllers/authentications_controller.rb      |    4 ++-
+ app/models/user.rb                                 |   24 +++++++++++++++++--
+ ...20120319225707_add_columns_to_authentication.rb |    7 +++++
+ db/schema.rb                                       |    8 ++++--
+ 9 files changed, 36 insertions(+), 7 deletions(-)
+ create mode 100644 app/assets/images/david.jpeg
+ create mode 100644 app/assets/images/hellyea.jpg
+ create mode 100644 db/migrate/20120319225707_add_columns_to_authentication.rb
+dbc02:notablee apprentice$ bundle install
+Using rake (0.9.2.2) 
+Using i18n (0.6.0) 
+Using multi_json (1.1.0) 
+Using activesupport (3.2.1) 
+Using builder (3.0.0) 
+Using activemodel (3.2.1) 
+Using erubis (2.7.0) 
+Using journey (1.0.3) 
+Using rack (1.4.1) 
+Using rack-cache (1.2) 
+Using rack-test (0.6.1) 
+Using hike (1.2.1) 
+Using tilt (1.3.3) 
+Using sprockets (2.1.2) 
+Using actionpack (3.2.1) 
+Using mime-types (1.17.2) 
+Using polyglot (0.3.3) 
+Using treetop (1.4.10) 
+Using mail (2.4.4) 
+Using actionmailer (3.2.1) 
+Using arel (3.0.2) 
+Using tzinfo (0.3.32) 
+Using activerecord (3.2.1) 
+Using activeresource (3.2.1) 
+Using addressable (2.2.7) 
+Using bcrypt-ruby (3.0.1) 
+Using bootstrap-sass (2.0.1) 
+Using bundler (1.0.21) 
+Using nokogiri (1.5.2) 
+Using ffi (1.0.11) 
+Using childprocess (0.3.1) 
+Using rubyzip (0.9.6.1) 
+Using selenium-webdriver (2.20.0) 
+Using xpath (0.1.4) 
+Using capybara (1.1.2) 
+Using chunky_png (1.2.5) 
+Using coffee-script-source (1.2.0) 
+Using execjs (1.3.0) 
+Using coffee-script (2.2.0) 
+Using rack-ssl (1.3.2) 
+Using json (1.6.5) 
+Using rdoc (3.12) 
+Using thor (0.14.6) 
+Using railties (3.2.1) 
+Using coffee-rails (3.2.2) 
+Using orm_adapter (0.0.6) 
+Using warden (1.1.1) 
+Using devise (2.0.4) 
+Using diff-lcs (1.1.3) 
+Using factory_girl (2.3.2) 
+Using factory_girl_rails (1.4.0) 
+Using multipart-post (1.1.5) 
+Using faraday (0.7.6) 
+Using hashie (1.2.0) 
+Using jquery-rails (2.0.1) 
+Using oauth (0.4.5) 
+Using omniauth (1.0.3) 
+Using omniauth-oauth (1.0.1) 
+Using omniauth-twitter (0.0.8) 
+Using rails (3.2.1) 
+Using rspec-core (2.8.0) 
+Using rspec-expectations (2.8.0) 
+Using rspec-mocks (2.8.0) 
+Using rspec (2.8.0) 
+Using rspec-rails (2.8.1) 
+Using sass (3.1.15) 
+Using sass-rails (3.2.4) 
+Using simple_oauth (0.1.5) 
+Using sqlite3 (1.3.5) 
+Using twitter (2.1.1) 
+Using uglifier (1.2.3) 
+Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
+dbc02:notablee apprentice$ rake db:migrate
+==  AddColumnsToAuthentication: migrating =====================================
+-- add_column(:authentications, :oauth_token, :string)
+   -> 0.0173s
+-- add_column(:authentications, :oauth_secret, :string)
+   -> 0.0006s
+==  AddColumnsToAuthentication: migrated (0.0181s) ============================
+
+dbc02:notablee apprentice$ rake db:reset
+-- create_table("authentications", {:force=>true})
+   -> 0.0102s
+-- create_table("badgehistories", {:force=>true})
+   -> 0.0026s
+-- create_table("badges", {:force=>true})
+   -> 0.0025s
+-- create_table("users", {:force=>true})
+   -> 0.0517s
+-- add_index("users", ["email"], {:name=>"index_users_on_email", :unique=>true})
+   -> 0.0018s
+-- add_index("users", ["reset_password_token"], {:name=>"index_users_on_reset_password_token", :unique=>true})
+   -> 0.0020s
+-- initialize_schema_migrations_table()
+   -> 0.0029s
+-- assume_migrated_upto_version(20120319225707, ["/Users/apprentice/Documents/notablee/db/migrate"])
+   -> 0.0147s
+it worked!
+dbc02:notablee apprentice$ rake db:migrate
+dbc02:notablee apprentice$ git status
+# On branch master
+nothing to commit (working directory clean)
+dbc02:notablee apprentice$ git unstash
+git: 'unstash' is not a git command. See 'git --help'.
+dbc02:notablee apprentice$ git help
+usage: git [--version] [--exec-path[=<path>]] [--html-path]
+           [-p|--paginate|--no-pager] [--no-replace-objects]
+           [--bare] [--git-dir=<path>] [--work-tree=<path>]
+           [-c name=value] [--help]
+           <command> [<args>]
+
+The most commonly used git commands are:
+   add        Add file contents to the index
+   bisect     Find by binary search the change that introduced a bug
+   branch     List, create, or delete branches
+   checkout   Checkout a branch or paths to the working tree
+   clone      Clone a repository into a new directory
+   commit     Record changes to the repository
+   diff       Show changes between commits, commit and working tree, etc
+   fetch      Download objects and refs from another repository
+   grep       Print lines matching a pattern
+   init       Create an empty git repository or reinitialize an existing one
+   log        Show commit logs
+   merge      Join two or more development histories together
+   mv         Move or rename a file, a directory, or a symlink
+   pull       Fetch from and merge with another repository or a local branch
+   push       Update remote refs along with associated objects
+   rebase     Forward-port local commits to the updated upstream head
+   reset      Reset current HEAD to the specified state
+   rm         Remove files from the working tree and from the index
+   show       Show various types of objects
+   status     Show the working tree status
+   tag        Create, list, delete or verify a tag object signed with GPG
+
+See 'git help <command>' for more information on a specific command.
+dbc02:notablee apprentice$ git stash pop
+Auto-merging app/models/user.rb
+CONFLICT (content): Merge conflict in app/models/user.rb
+dbc02:notablee apprentice$ rails c
+Loading development environment (Rails 3.2.1)
+1.9.3p0 :001 > User.all
+  User Load (0.1ms)  SELECT "users".* FROM "users" 
+ => [#<User id: 1, email: "user-1791111332203021@notablee.com", encrypted_password: "", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-03-20 00:23:41", last_sign_in_at: "2012-03-20 00:23:41", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-03-20 00:23:41", updated_at: "2012-03-20 00:23:41", badge_id: nil, avatar_url: "https://si0.twimg.com/profile_images/1910208156/jes...", notablee_url: nil, username: "spaciety_megan">] 
+1.9.3p0 :002 > megan = User.all
+  User Load (0.3ms)  SELECT "users".* FROM "users" 
+ => [#<User id: 1, email: "user-1791111332203021@notablee.com", encrypted_password: "", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-03-20 00:23:41", last_sign_in_at: "2012-03-20 00:23:41", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-03-20 00:23:41", updated_at: "2012-03-20 00:23:41", badge_id: nil, avatar_url: "https://si0.twimg.com/profile_images/1910208156/jes...", notablee_url: nil, username: "spaciety_megan">] 
+1.9.3p0 :003 > megan_avatar = MiniMagick::Image.open(megan.avatar_url)
+NoMethodError: undefined method `avatar_url' for #<Array:0x007fb7ec19ab80>
+	from (irb):3
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :004 > megan
+ => [#<User id: 1, email: "user-1791111332203021@notablee.com", encrypted_password: "", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-03-20 00:23:41", last_sign_in_at: "2012-03-20 00:23:41", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-03-20 00:23:41", updated_at: "2012-03-20 00:23:41", badge_id: nil, avatar_url: "https://si0.twimg.com/profile_images/1910208156/jes...", notablee_url: nil, username: "spaciety_megan">] 
+1.9.3p0 :005 > megan.avatar_url
+NoMethodError: undefined method `avatar_url' for #<Array:0x007fb7ec19ab80>
+	from (irb):5
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :006 > m
+NameError: undefined local variable or method `m' for main:Object
+	from (irb):6
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :007 > megan = User.first
+  User Load (0.2ms)  SELECT "users".* FROM "users" LIMIT 1
+ => #<User id: 1, email: "user-1791111332203021@notablee.com", encrypted_password: "", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-03-20 00:23:41", last_sign_in_at: "2012-03-20 00:23:41", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-03-20 00:23:41", updated_at: "2012-03-20 00:23:41", badge_id: nil, avatar_url: "https://si0.twimg.com/profile_images/1910208156/jes...", notablee_url: nil, username: "spaciety_megan"> 
+1.9.3p0 :008 > megan_avatar = MiniMagick::Image.open(megan.avatar_url)
+ => #<MiniMagick::Image:0x007fb7ea4c4420 @path="/var/folders/72/ggyc4z_56hq7xvjy_969w7rh0000gp/T/mini_magick20120319-46017-icnccd.png", @tempfile=#<File:/var/folders/72/ggyc4z_56hq7xvjy_969w7rh0000gp/T/mini_magick20120319-46017-icnccd.png (closed)>> 
+1.9.3p0 :009 > notablee_avatar = megan_avatar.composite(MiniMagick::Image.open(Badge.find_by_id(megan.badge_id).image_url)
+1.9.3p0 :010?>   )
+  Badge Load (0.2ms)  SELECT "badges".* FROM "badges" WHERE "badges"."id" IS NULL LIMIT 1
+NoMethodError: undefined method `image_url' for nil:NilClass
+	from (irb):9
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :011 > notablee_avatar = megan_avatar.composite(MiniMagick::Image.open(Badge.find_by_id(megan.badge_id).image_url))
+  Badge Load (0.2ms)  SELECT "badges".* FROM "badges" WHERE "badges"."id" IS NULL LIMIT 1
+NoMethodError: undefined method `image_url' for nil:NilClass
+	from (irb):11
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :012 > notablee_avatar = megan_avatar.composite(MiniMagick::Image.open(Badge.find_by_id(megan_avatar.badge_id).image_url))
+NoMethodError: undefined method `badge_id' for #<MiniMagick::CommandBuilder:0x007fb7ed0f8d98>
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:467:in `method_missing'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:342:in `block in method_missing'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:360:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:360:in `combine_options'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:341:in `method_missing'
+	from (irb):12
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :013 > megan.badge_id
+ => nil 
+1.9.3p0 :014 > Badge.all
+  Badge Load (0.3ms)  SELECT "badges".* FROM "badges" 
+ => [#<Badge id: 1, title: "KONY 2012", image_url: "kony2012.png", description: "This is guy is really bad. Let us all get together ...", times_used: nil, owner_id: 1, created_at: "2012-03-20 00:22:37", updated_at: "2012-03-20 00:22:37">, #<Badge id: 2, title: "Stop SOPA", image_url: "StopSopa.png", description: "SOPA is really bad. Let us all get together and put...", times_used: nil, owner_id: 1, created_at: "2012-03-20 00:22:37", updated_at: "2012-03-20 00:22:37">, #<Badge id: 3, title: "KONY 2012 New Color", image_url: "kony2012-2.png", description: "Check this out.  We created another color to make t...", times_used: nil, owner_id: 1, created_at: "2012-03-20 00:22:37", updated_at: "2012-03-20 00:22:37">, #<Badge id: 4, title: "Stop SOPA awesome", image_url: "StopSopa-2.png", description: "SOPA is awesome. So is David.  Stop is not actually...", times_used: nil, owner_id: 1, created_at: "2012-03-20 00:22:37", updated_at: "2012-03-20 00:22:37">] 
+1.9.3p0 :015 > megan.badge_id = 1
+ => 1 
+1.9.3p0 :016 > megan.save
+   (0.1ms)  begin transaction
+   (0.1ms)  SELECT COUNT(*) FROM "authentications" WHERE "authentications"."user_id" = 1
+   (0.1ms)  SELECT COUNT(*) FROM "authentications" WHERE "authentications"."user_id" = 1
+   (13.6ms)  UPDATE "users" SET "badge_id" = 1, "updated_at" = '2012-03-20 00:38:46.981474' WHERE "users"."id" = 1
+   (1.6ms)  commit transaction
+ => true 
+1.9.3p0 :017 > notablee_avatar = megan_avatar.composite(MiniMagick::Image.open(Badge.find_by_id(megan_avatar.badge_id).image_url))
+NoMethodError: undefined method `badge_id' for #<MiniMagick::CommandBuilder:0x007fb7ea4cb2e8>
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:467:in `method_missing'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:342:in `block in method_missing'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:360:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:360:in `combine_options'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:341:in `method_missing'
+	from (irb):17
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :018 > notablee_avatar = megan_avatar.composite(MiniMagick::Image.open(Badge.find_by_id(megan.badge_id).image_url))
+  Badge Load (0.3ms)  SELECT "badges".* FROM "badges" WHERE "badges"."id" = 1 LIMIT 1
+Errno::ENOENT: No such file or directory - kony2012.png
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:133:in `initialize'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:133:in `open'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:133:in `open'
+	from (irb):18
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :019 > notablee_avatar = megan_avatar.composite(MiniMagick::Image.open("app/assets/images/" + Badge.find_by_id(megan.badge_id).image_url))
+  Badge Load (0.2ms)  SELECT "badges".* FROM "badges" WHERE "badges"."id" = 1 LIMIT 1
+ => #<MiniMagick::Image:0x007fb7ed44a2d0 @path="/var/folders/72/ggyc4z_56hq7xvjy_969w7rh0000gp/T/jpg20120319-46017-n8mal1", @tempfile=#<File:/var/folders/72/ggyc4z_56hq7xvjy_969w7rh0000gp/T/jpg20120319-46017-n8mal1 (closed)>> 
+1.9.3p0 :020 > notablee_avatar.write "Andrewfirstnotableepost"
+ => "Andrewfirstnotableepost PNG 128x128 128x128+0+0 8-bit DirectClass 36.1KB 0.000u 0:00.000\n" 
+1.9.3p0 :021 > m
+NameError: undefined local variable or method `m' for main:Object
+	from (irb):21
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :022 > megan
+ => #<User id: 1, email: "user-1791111332203021@notablee.com", encrypted_password: "", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-03-20 00:23:41", last_sign_in_at: "2012-03-20 00:23:41", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-03-20 00:23:41", updated_at: "2012-03-20 00:38:46", badge_id: 1, avatar_url: "https://si0.twimg.com/profile_images/1910208156/jes...", notablee_url: nil, username: "spaciety_megan"> 
+1.9.3p0 :023 > megan.authentications
+  Authentication Load (0.3ms)  SELECT "authentications".* FROM "authentications" WHERE "authentications"."user_id" = 1
+ => [#<Authentication id: 1, user_id: 1, provider: "twitter", uid: "377568536", created_at: "2012-03-20 00:23:41", updated_at: "2012-03-20 00:23:41", oauth_token: "377568536-FBmmh0QpLS92wdKK7k0Bj3MBl3nyVRP4Da7J4Hs7", oauth_secret: "Ymh4P4SLnniMXsEkPnnwo13fsqLomtKnr5Y2qPtg1qY">] 
+1.9.3p0 :024 > notablee_file = notablee_avatar.write "Andrewfirstnotableepost.png" => "Andrewfirstnotableepost.png PNG 128x128 128x128+0+0 8-bit DirectClass 36.1KB 0.000u 0:00.000\n" 
+1.9.3p0 :025 > t = megan.authentications
+ => [#<Authentication id: 1, user_id: 1, provider: "twitter", uid: "377568536", created_at: "2012-03-20 00:23:41", updated_at: "2012-03-20 00:23:41", oauth_token: "377568536-FBmmh0QpLS92wdKK7k0Bj3MBl3nyVRP4Da7J4Hs7", oauth_secret: "Ymh4P4SLnniMXsEkPnnwo13fsqLomtKnr5Y2qPtg1qY">] 
+1.9.3p0 :026 > t = megan.authentications.first.oauth_token
+ => "377568536-FBmmh0QpLS92wdKK7k0Bj3MBl3nyVRP4Da7J4Hs7" 
+1.9.3p0 :027 > s = megan.authentications.first.oauth_secret
+ => "Ymh4P4SLnniMXsEkPnnwo13fsqLomtKnr5Y2qPtg1qY" 
+1.9.3p0 :028 > megan.update_profile_image(notablee_file, t, s)
+Twitter::Error::InternalServerError: Something is technically wrong.
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter/response/raise_server_error.rb:13:in `on_complete'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/response.rb:9:in `block in call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/response.rb:62:in `on_complete'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/response.rb:8:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/response.rb:8:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/response.rb:8:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/request/url_encoded.rb:14:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/request/multipart.rb:13:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter/request/oauth.rb:17:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter/request/multipart_with_file.rb:17:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter/request/phoenix.rb:13:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/connection.rb:210:in `run_request'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter/request.rb:23:in `request'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter/request.rb:16:in `post'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter/client/accounts.rb:147:in `update_profile_image'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter.rb:17:in `method_missing'
+	from /Users/apprentice/Documents/notablee/app/models/user.rb:65:in `update_profile_image'
+	from (irb):28
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'1.9.3p0 :029 > megan.update_profile_image(notablee_file, t, s)
+Twitter::Error::InternalServerError: Something is technically wrong.
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter/response/raise_server_error.rb:13:in `on_complete'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/response.rb:9:in `block in call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/response.rb:62:in `on_complete'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/response.rb:8:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/response.rb:8:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/response.rb:8:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/request/url_encoded.rb:14:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/request/multipart.rb:13:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter/request/oauth.rb:17:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter/request/multipart_with_file.rb:17:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter/request/phoenix.rb:13:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/faraday-0.7.6/lib/faraday/connection.rb:210:in `run_request'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter/request.rb:23:in `request'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter/request.rb:16:in `post'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter/client/accounts.rb:147:in `update_profile_image'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/twitter-2.1.1/lib/twitter.rb:17:in `method_missing'
+	from /Users/apprentice/Documents/notablee/app/models/user.rb:65:in `update_profile_image'
+	from (irb):29
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'1.9.3p0 :030 > 
+1.9.3p0 :031 >   
+1.9.3p0 :032 >   
+1.9.3p0 :033 >   Twitter
+ => Twitter 
+1.9.3p0 :034 > Twitter.user("mehulkar")
+ => #<Twitter::User:0x007fb7ed11d850 @attrs={"id"=>19824931, "following"=>false, "contributors_enabled"=>false, "profile_use_background_image"=>true, "id_str"=>"19824931", "geo_enabled"=>true, "profile_text_color"=>"666666", "listed_count"=>50, "profile_image_url"=>"http://a0.twimg.com/profile_images/1708801388/400866_2807939715741_1176120008_3094289_1518523643_n_normal.jpg", "utc_offset"=>-21600, "notifications"=>false, "show_all_inline_media"=>false, "followers_count"=>873, "profile_sidebar_border_color"=>"181A1E", "name"=>"Mehul Kar", "friends_count"=>878, "screen_name"=>"mehulkar", "time_zone"=>"Central Time (US & Canada)", "is_translator"=>false, "verified"=>false, "protected"=>false, "profile_image_url_https"=>"https://si0.twimg.com/profile_images/1708801388/400866_2807939715741_1176120008_3094289_1518523643_n_normal.jpg", "profile_background_tile"=>false, "follow_request_sent"=>false, "url"=>"http://www.mehulkar.com", "profile_sidebar_fill_color"=>"252429", "default_profile_image"=>false, "created_at"=>"Sat Jan 31 18:19:23 +0000 2009", "favourites_count"=>1148, "description"=>"Working on @CollegeDesis. Learning Rails at @devbootcamp.", "lang"=>"en", "profile_background_color"=>"1A1B1F", "location"=>"San Francisco", "profile_background_image_url"=>"http://a0.twimg.com/images/themes/theme9/bg.gif", "profile_background_image_url_https"=>"https://si0.twimg.com/images/themes/theme9/bg.gif", "status"=>{"id_str"=>"181884508948279296", "retweeted"=>false, "in_reply_to_screen_name"=>nil, "place"=>nil, "coordinates"=>nil, "created_at"=>"Mon Mar 19 23:27:00 +0000 2012", "favorited"=>false, "in_reply_to_status_id_str"=>nil, "contributors"=>nil, "geo"=>nil, "retweet_count"=>0, "in_reply_to_status_id"=>nil, "in_reply_to_user_id_str"=>nil, "source"=>"<a href=\"http://twitter.com/#!/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>", "in_reply_to_user_id"=>nil, "truncated"=>false, "id"=>181884508948279296, "text"=>"I think @davjphillips has gotten a lot prettier since @devbootcamp started. What do you think? #trolllololol cc: @ALzonedOut @jon_castillo"}, "profile_link_color"=>"2FC2EF", "statuses_count"=>8611, "default_profile"=>false}> 
+1.9.3p0 :035 > mega
+NameError: undefined local variable or method `mega' for main:Object
+	from (irb):35
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :036 > megan
+ => #<User id: 1, email: "user-1791111332203021@notablee.com", encrypted_password: "", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-03-20 00:23:41", last_sign_in_at: "2012-03-20 00:23:41", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-03-20 00:23:41", updated_at: "2012-03-20 00:38:46", badge_id: 1, avatar_url: "https://si0.twimg.com/profile_images/1910208156/jes...", notablee_url: nil, username: "spaciety_megan"> 
+1.9.3p0 :037 > megan.update_profile_image
+ArgumentError: wrong number of arguments (0 for 3)
+	from /Users/apprentice/Documents/notablee/app/models/user.rb:63:in `update_profile_image'
+	from (irb):37
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :038 > j = File.open("app/assets/images/jessica_alba.png")
+ => #<File:app/assets/images/jessica_alba.png> 
+1.9.3p0 :039 > notable_file
+NameError: undefined local variable or method `notable_file' for main:Object
+	from (irb):39
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :040 > notablee_file
+ => "Andrewfirstnotableepost.png PNG 128x128 128x128+0+0 8-bit DirectClass 36.1KB 0.000u 0:00.000\n" 
+1.9.3p0 :041 > notablee_file.read
+NoMethodError: undefined method `read' for #<String:0x007fb7ed4f8fb0>
+	from (irb):41
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :042 > notablee_url
+NameError: undefined local variable or method `notablee_url' for main:Object
+	from (irb):42
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :043 > notablee_avatar
+ => #<MiniMagick::Image:0x007fb7ed44a2d0 @path="/var/folders/72/ggyc4z_56hq7xvjy_969w7rh0000gp/T/jpg20120319-46017-n8mal1", @tempfile=#<File:/var/folders/72/ggyc4z_56hq7xvjy_969w7rh0000gp/T/jpg20120319-46017-n8mal1 (closed)>> 
+1.9.3p0 :044 > notablee_avatar.@tempfile
+SyntaxError: (irb):44: syntax error, unexpected tIVAR
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :045 > notablee_avatar.tempfile
+NoMethodError: undefined method `tempfile' for #<MiniMagick::CommandBuilder:0x007fb7ed424468>
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:467:in `method_missing'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:342:in `block in method_missing'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:360:in `call'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:360:in `combine_options'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/mini_magick-3.4/lib/mini_magick.rb:341:in `method_missing'
+	from (irb):45
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :046 > notablee_avatar
+ => #<MiniMagick::Image:0x007fb7ed44a2d0 @path="/var/folders/72/ggyc4z_56hq7xvjy_969w7rh0000gp/T/jpg20120319-46017-n8mal1", @tempfile=#<File:/var/folders/72/ggyc4z_56hq7xvjy_969w7rh0000gp/T/jpg20120319-46017-n8mal1 (closed)>> 
+1.9.3p0 :047 > notablee_avatar[2]
+ => "2" 
+1.9.3p0 :048 > notablee_avatar(2)
+NoMethodError: undefined method `notablee_avatar' for main:Object
+	from (irb):48
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :049 > notablee_avatar
+ => #<MiniMagick::Image:0x007fb7ed44a2d0 @path="/var/folders/72/ggyc4z_56hq7xvjy_969w7rh0000gp/T/jpg20120319-46017-n8mal1", @tempfile=#<File:/var/folders/72/ggyc4z_56hq7xvjy_969w7rh0000gp/T/jpg20120319-46017-n8mal1 (closed)>> 
+1.9.3p0 :050 > notablee_avatar.split(,)
+SyntaxError: (irb):50: syntax error, unexpected ',', expecting ')'
+notablee_avatar.split(,)
+                       ^
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :051 > notablee_file
+ => "Andrewfirstnotableepost.png PNG 128x128 128x128+0+0 8-bit DirectClass 36.1KB 0.000u 0:00.000\n" 
+1.9.3p0 :052 > notablee_file.split(' ').first
+ => "Andrewfirstnotableepost.png" 
+1.9.3p0 :053 > notablee_file.split(' ').first.read
+NoMethodError: undefined method `read' for "Andrewfirstnotableepost.png":String
+	from (irb):53
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :054 > notablee_file.split(' ').first.open
+NoMethodError: private method `open' called for "Andrewfirstnotableepost.png":String
+	from (irb):54
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:47:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands/console.rb:8:in `start'
+	from /Users/apprentice/.rvm/gems/ruby-1.9.3-p0@snotablee/gems/railties-3.2.1/lib/rails/commands.rb:41:in `<top (required)>'
+	from script/rails:6:in `require'
+	from script/rails:6:in `<main>'
+1.9.3p0 :055 > File.open("Andrewfirstnotableepost.png")
+ => #<File:Andrewfirstnotableepost.png> 
+1.9.3p0 :056 > notablee_file =_
+ => #<File:Andrewfirstnotableepost.png> 
+1.9.3p0 :057 > megan.update_profile_image(notablee_file, t, s)
+ => #<Twitter::User:0x007fb7ea6ed468 @attrs={"id"=>377568536, "description"=>nil, "statuses_count"=>14, "default_profile_image"=>false, "show_all_inline_media"=>false, "favourites_count"=>0, "profile_use_background_image"=>true, "id_str"=>"377568536", "following"=>false, "profile_text_color"=>"333333", "profile_background_image_url_https"=>"https://si0.twimg.com/images/themes/theme1/bg.png", "verified"=>false, "utc_offset"=>nil, "name"=>"megan", "follow_request_sent"=>false, "profile_sidebar_border_color"=>"C0DEED", "protected"=>false, "default_profile"=>true, "profile_background_tile"=>false, "profile_sidebar_fill_color"=>"DDEEF6", "profile_image_url"=>"http://a0.twimg.com/profile_images/1910208156/jessica_alba_normal.png", "listed_count"=>0, "followers_count"=>3, "notifications"=>false, "profile_background_color"=>"C0DEED", "profile_image_url_https"=>"https://si0.twimg.com/profile_images/1910208156/jessica_alba_normal.png", "created_at"=>"Wed Sep 21 19:44:32 +0000 2011", "friends_count"=>3, "lang"=>"en", "url"=>nil, "screen_name"=>"spaciety_megan", "status"=>{"coordinates"=>nil, "truncated"=>false, "possibly_sensitive_editable"=>true, "possibly_sensitive"=>false, "in_reply_to_status_id_str"=>nil, "retweet_count"=>0, "favorited"=>false, "contributors"=>nil, "geo"=>nil, "text"=>"Michael Westen is back! Show how excited you are for his return by adding the #BurnNotice #twibbon! http://t.co/i9OOi2hO @BurnNotice_USA", "in_reply_to_user_id_str"=>nil, "place"=>nil, "created_at"=>"Wed Mar 14 18:16:19 +0000 2012", "id_str"=>"179994381737140226", "in_reply_to_user_id"=>nil, "source"=>"<a href=\"http://twibbon.com\" rel=\"nofollow\">Twibbon</a>", "in_reply_to_screen_name"=>nil, "id"=>179994381737140226, "retweeted"=>false, "in_reply_to_status_id"=>nil}, "is_translator"=>false, "contributors_enabled"=>false, "profile_background_image_url"=>"http://a0.twimg.com/images/themes/theme1/bg.png", "location"=>nil, "geo_enabled"=>false, "profile_link_color"=>"0084B4", "time_zone"=>nil}> 
+1.9.3p0 :058 >

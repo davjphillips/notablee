@@ -48,10 +48,29 @@ class User < ActiveRecord::Base
 
   end
   
+  
   def update_profile_image(img, token, secret)
-     setup_twitter(token, secret)
-     Twitter.update_profile_image(img)
+    img.pos = 0
+    setup_twitter(token, secret)
+    Twitter.update_profile_image(img)
+    File.delete("#{self.username}.png")
   end
+  
+  def create_notablee_url
+    original_avatar = MiniMagick::Image.open(self.avatar_url)
+    notablee_avatar = original_avatar.composite(MiniMagick::Image.open("app/assets/images/" + Badge.find_by_id(self.badge_id).image_url))
+    notablee_avatar.write "#{self.username}.png"
+    @notablee_url = File.open("#{self.username}.png")
+    
+    token = self.authentications.first.oauth_token
+    secret = self.authentications.first.oauth_secret
+    
+    update_profile_image(@notablee_url, token, secret)
+    
+    #     
+    # Badge.find_by_id(Megan.badge_id).image_url 
+  end
+  
   
   protected
 

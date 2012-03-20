@@ -16,6 +16,6 @@ class BadgesController < ApplicationController
   end
 
   def update
-    User.update_profile_image('jessica_alba.png') 
+    current_user.create_notablee_url
   end
 end

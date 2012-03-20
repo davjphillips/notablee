@@ -1,6 +1,6 @@
 <br />
 <%= link_to image_tag @display_avatar %>
-<%= link_to(image_tag(@badge.image_url, :class => "show_badge"), badge_path(@badge.id), :method => 'put') %>
+<%= link_to(image_tag(@badge.image_url, :class => "show_badge"), badge_path(@badge.id)) %>
 <p>
-<%= link_to "Use this Badge", "#",  :class=> "btn btn-large btn-success" %>
+<%= link_to "Use this Badge", badge_path, :method => 'put',  :class=> "btn btn-large btn-success" %>
 </p>
