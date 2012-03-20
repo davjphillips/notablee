@@ -97,6 +97,7 @@ GEM
     omniauth-twitter (0.0.8)
       omniauth-oauth (~> 1.0)
     orm_adapter (0.0.6)
+    pg (0.13.2)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -187,6 +188,7 @@ DEPENDENCIES
   mini_magick (~> 3.4)
   omniauth (~> 1.0.3)
   omniauth-twitter
+  pg
   rails (= 3.2.1)
   rspec-rails (~> 2.8.1)
   sass-rails (~> 3.2.3)
