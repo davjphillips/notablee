@@ -16,12 +16,26 @@ class User < ActiveRecord::Base
   has_many :owned_badges, :foreign_key => :owner_id
   has_many :authentications
   
+  def self.apply_params(omniauth, user)
+    i = rand(1000000).to_s + Time.new.to_i.inspect
+    username = omniauth['info']['nickname']
+    user_image_url = User.get_user_image_url(username)
+    user.email = "user-#{i}@notablee.com"
+    user.username = username
+    user.avatar_url = user_image_url
+    user.apply_omniauth(omniauth)
+  end
+  
   def apply_omniauth(omniauth)
     authentications.build(:provider => omniauth['provider'], 
                           :uid => omniauth['uid'], 
                           :oauth_token => omniauth['credentials']['token'], 
                           :oauth_secret => omniauth['credentials']['secret']
                           )
+  end
+  
+  def self.get_user_image_url(username)
+    Twitter.profile_image(username, :size => 'reasonably_small')
   end
   
   def password_required?
@@ -34,15 +48,12 @@ class User < ActiveRecord::Base
      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.strip.downcase }]).first
   end
   
-  def self.get_user_image(username)
-    Twitter.profile_image(username, :size => 'reasonably_small')
-  end
-  
   def update_profile_image(img, token, secret)
     img.pos = 0
     setup_twitter(token, secret)
     Twitter.update_profile_image(img)
     File.delete("#{self.username}.png")
+
   end
   
   def create_notablee_url
@@ -86,7 +97,6 @@ class User < ActiveRecord::Base
 
      unless record
        record = new
-
        required_attributes.each do |key|
          value = attributes[key]
          record.send("#{key}=", value)
@@ -100,13 +110,12 @@ class User < ActiveRecord::Base
      where(["username = :value OR email = :value", { :value => login }]).first
    end
 
-   def setup_twitter(token, secret)
-          Twitter.configure do |config|
-             config.consumer_key = 'ccTPXN2szUdt88PDTAmNXQ'  # needs to come from config
-             config.consumer_secret = 'STJIVcvCE6MgUeQjck13gCEKOvxT1WaTdGURdVllIM' # Also from config
-             config.oauth_token = token #'523792847-OI558v8yWQnK7EyXjyvL3reWwc5NYlx9zSWIp7nM' << notablee credentials
-             config.oauth_token_secret = secret #'sOoWNMUZhZYMQMBhRaXHBVZ37zk8WeJ2qIPTJmRy4k' << notablee credentials
-           end  
+  def setup_twitter(token, secret)
+    Twitter.configure do |config|
+       config.consumer_key = 'ccTPXN2szUdt88PDTAmNXQ'  # needs to come from config
+       config.consumer_secret = 'STJIVcvCE6MgUeQjck13gCEKOvxT1WaTdGURdVllIM' # Also from config
+       config.oauth_token = token #'523792847-OI558v8yWQnK7EyXjyvL3reWwc5NYlx9zSWIp7nM' << notablee credentials
+       config.oauth_token_secret = secret #'sOoWNMUZhZYMQMBhRaXHBVZ37zk8WeJ2qIPTJmRy4k' << notablee credentials
+     end
    end
-  
 end
