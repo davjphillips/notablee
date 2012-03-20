@@ -11,7 +11,6 @@ gem 'mini_magick', '~> 3.4'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'chunky_png', '~> 1.2.5'
 gem 'bootstrap-sass', '~> 2.0.1'
 
@@ -31,8 +30,13 @@ end
 gem 'jquery-rails'
 
 group :development do
+  gem 'sqlite3'
   gem 'rspec-rails', '~>2.8.1'
 	gem 'factory_girl_rails', '1.4.0'
+end
+
+group :production do
+  gem 'pg'
 end
 
 group :test do
