@@ -29,6 +29,13 @@ class User < ActiveRecord::Base
     user
   end
   
+  def update_profile(omniauth)
+    username = omniauth['info']['nickname']
+    user_image = User.get_user_image_url(username)
+    self.avatar_url = user_image
+    self.save
+  end
+  
   def apply_omniauth(omniauth)
     authentications.build(:provider => omniauth['provider'], 
                           :uid => omniauth['uid'], 
