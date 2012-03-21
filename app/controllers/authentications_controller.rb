@@ -15,13 +15,8 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = "Authentication Successful with Twitter"
       sign_in_and_redirect(:user, authentication.user)
       current_user.update_profile(omniauth)
-    elsif current_user #this requires that a user sign into notablee before creating an authentication. 
-      
-      
-      current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
-      authentication.oauth_token = omniauth['credentials']['token']
-      authentication.oauth_secret = omniauth['credentials']['secret']
-      
+    elsif current_user 
+      current_user.associate_authentication(omniauth)
       flash[:notice] = "Authentication Successful"
       redirect_to root_path
     else
