@@ -20,11 +20,10 @@ class User < ActiveRecord::Base
   
   def self.new_user_with_auth(omniauth)
     user = User.new
-    i = rand(1000000).to_s + Time.new.to_i.inspect
     username = omniauth['info']['nickname']
     user_image_url = User.get_user_image_url(username)
     
-    user.email = "user-#{i}@notablee.com"
+    user.email = "#{username}@notablee.com"
     user.username = username
     user.avatar_url = user_image_url
     user.apply_omniauth(omniauth)
