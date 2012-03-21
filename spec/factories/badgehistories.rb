@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :badgehistory do
-    user_id 1
+    sequence(:user_id) {|n| "#{n}"}
     badge_id 1
     dropped_at "2012-03-14 18:00:53"
     user_followers_snapshot 5

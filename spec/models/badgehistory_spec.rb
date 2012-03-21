@@ -1,10 +1,18 @@
 require 'spec_helper'
 
 describe Badgehistory do
-  it "counts the number of downloads of a given badge" do
+  before (:each) do
+    @badge    = Factory.create(:badge)
     history  = Factory.create(:badgehistory)
     history2 = Factory.create(:badgehistory)
-    
-    #Badgehistory.find_all_by_badge_id(1).count.should eq(2)
+    history3 = Factory.create(:badgehistory)
+  end
+  
+    it "counts the number of downloads of a given badge" do
+      Badgehistory.download_count(@badge.id).should eq(3)
+    end
+
+    it "aggregates the number of followers for a badge" do
+      Badgehistory.total_followers(@badge.id).should eq(15)
   end
 end
