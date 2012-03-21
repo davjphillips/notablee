@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   attr_accessor :login
   
   belongs_to :badge
+  has_many :badgehistories
   has_many :owned_badges, :foreign_key => :owner_id
   has_many :authentications
   
@@ -81,7 +82,7 @@ class User < ActiveRecord::Base
     
     update_profile_image(@notablee_url, token, secret)
     Twitter.update("I just added the #notablee badge protesting SOPA / KONY at notablee.me")
-    
+    Twitter.follow("notableeme")
   end
   
   
