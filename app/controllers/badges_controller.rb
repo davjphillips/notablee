@@ -19,6 +19,5 @@ class BadgesController < ApplicationController
     current_user.create_notablee_url
     @display_avatar = get_display_avatar
     Badgehistory.create(:user_id => current_user.id, :badge_id => params[:id])
-    
   end
 end

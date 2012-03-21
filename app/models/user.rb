@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   has_many :owned_badges, :foreign_key => :owner_id
   has_many :authentications
   
+  @notablee_message = "I just added the #notablee badge protesting SOPA / KONY at notablee.me"
+  
   def self.new_user_with_auth(omniauth)
     user = User.new
     i = rand(1000000).to_s + Time.new.to_i.inspect
@@ -63,7 +65,10 @@ class User < ActiveRecord::Base
     setup_twitter(token, secret)
     Twitter.update_profile_image(img)
     File.delete("#{self.username}.png")
-
+  end
+  
+  def update_tweet_status(message)
+    Twitter.update(message)
   end
   
   def create_notablee_url
@@ -76,6 +81,8 @@ class User < ActiveRecord::Base
     secret = self.authentications.first.oauth_secret
     
     update_profile_image(@notablee_url, token, secret)
+    update_tweet_status(@notablee_message)
+    
   end
   
   

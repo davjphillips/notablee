@@ -28,7 +28,7 @@ describe Badge do
   
   it 'has an administrator (created by)' do
     should_not be_valid
-    subject.errors[:user_id].should_not be_empty
+    subject.errors[:owner_id].should_not be_empty
   end
   
   context "with users" do
