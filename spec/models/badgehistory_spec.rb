@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Badgehistory do
   before (:each) do
-    @badge    = Factory.create(:badge)
+    @badge   = Factory.create(:badge)
     history  = Factory.create(:badgehistory)
     history2 = Factory.create(:badgehistory)
     history3 = Factory.create(:badgehistory)

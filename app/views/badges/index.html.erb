@@ -21,7 +21,7 @@
 						</td>
             <td width="17%" style="padding-top: 20px"><%= badge.title %></td>
             <td width="54.5%" style="padding-top: 20px"><%= badge.description %></td>
-            <td width="17%" style="padding-top: 20px"><b>24,023,656</b></td>
+            <td width="17%" style="padding-top: 20px"><b><%= badge.badgehistories.total_followers(badge.id) %></b></td>
             
           </tr>
 					<% end %>

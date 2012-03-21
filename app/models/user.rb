@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
     secret = self.authentications.first.oauth_secret
     
     update_profile_image(@notablee_url, token, secret)
-    Twitter.update("I just added the #notablee badge protesting SOPA / KONY at notablee.me")
+    #Twitter.update("I just added the #notablee badge protesting SOPA / KONY at notablee.me")
     
   end
   
