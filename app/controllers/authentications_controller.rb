@@ -6,15 +6,13 @@ class AuthenticationsController < ApplicationController
   
   def create
     # render :text => request.env["omniauth.auth"].to_yaml
-    
     omniauth = request.env["omniauth.auth"]
-    
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     
     if authentication
+      authentication.user.update_profile(omniauth)
       flash[:notice] = "Authentication Successful with Twitter"
       sign_in_and_redirect(:user, authentication.user)
-      current_user.update_profile(omniauth)
     elsif current_user 
       current_user.associate_authentication(omniauth)
       flash[:notice] = "Authentication Successful"
@@ -25,7 +23,6 @@ class AuthenticationsController < ApplicationController
         flash[:notice] = "Signed in successfully."
         sign_in_and_redirect(:user, user)
       else
-        puts "did not save successfully #{user.errors.full_messages}"
         session[:omniauth] = omniauth.except('extra')
         redirect_to new_user_registration_path
       end
