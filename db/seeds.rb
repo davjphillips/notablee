@@ -6,36 +6,46 @@
 #   cities = City.create( name: 'Chicago' , name: 'Copenhagen' )
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
 b1 = Badge.create!(:title => 'KONY 2012', 
                    :description => 'This is guy is really bad. Let us all get together and put a 
                                   stop to this madness. This is really bad.  Lorem ipsum. That 
                                   is all the lorem ipsum stuff that I know.', 
                    :image_url => 'kony2012.png',
-                   :owner_id  => 1)
-                   
-b2 = Badge.create!( :title => 'Stop SOPA', 
-                  :description => 'SOPA is really bad. Let us all get together and put a 
-                                 stop to SOPA. This is really bad.  Lorem ipsum. We already
-                                 stopped SOPA, but we feel the need to represent this badge anyway.', 
-                  :image_url => 'StopSopa.png',
-                  :owner_id  => 1)
-                  
-b3 = Badge.create!( :title => 'KONY 2012 New Color', 
-                   :description => 'Check this out.  We created another color to make this KONY fella more
-                                  famous.  Help make him famous - create awareness and stomp his fac.
-                                  This is guy is really bad. Let us all get together and put a 
-                                  stop to this madness. This is really bad.  Lorem ipsum. That 
-                                  is all the lorem ipsum stuff that I know.', 
-                   :image_url => 'kony2012-2.png',
-                   :owner_id  => 1)
+                   :owner_id  => 1,
+                   :category => "Causes")
 
-b4 = Badge.create!( :title => 'Stop SOPA awesome', 
-                  :description => 'SOPA is awesome. So is David.  Stop is not actually awesome...but then
-                                  again, neither is David.  I suppose it is better than getting stuck
-                                  working with Lachy. At least he is old enough to grab a beer.', 
-                  :image_url => 'StopSopa-2.png',
-                  :owner_id  => 1)
+b2 = Badge.create!( :title => 'Stop SOPA', 
+                 :description => 'SOPA is really bad. Let us all get together and put a 
+                                stop to SOPA. This is really bad.  Lorem ipsum. We already
+                                stopped SOPA, but we feel the need to represent this badge anyway.', 
+                 :image_url => 'StopSopa.png',
+                 :owner_id  => 1,
+                 :category => "Causes")
+
+b3 = Badge.create!(:title => 'JOBS Act', 
+                   :description => 'Support the JOBS Act to allow businesses to raise money through 
+                                    crowdfunding, publicly discuss that they are raising money and more', 
+                   :image_url => 'jobsact.png',
+                   :owner_id  => 1,
+                   :category => "Causes")
+                  
+b4 = Badge.create!( :title => 'Dev Bootcamp', 
+                   :description => 'An intensive bootcamp for passionate learners to learn web development in 10 weeks.', 
+                   :image_url => 'devbootcamp.png',
+                   :owner_id  => 1,
+                   :category => "Organizations")
+                   
+b5 = Badge.create!( :title => 'Notablee', 
+                  :description => 'Changing the world one picture at a time.', 
+                  :image_url => 'notableeme.png',
+                  :owner_id  => 1,
+                  :category => "Organizations")
+
+b6 = Badge.create!( :title => 'Umerica', 
+                  :description => 'Land of the free and the home of the brave', 
+                  :image_url => 'american.png',
+                  :owner_id  => 1,
+                  :category => "Countries")
                   
                   
 

@@ -10,16 +10,26 @@
 	padding-left:-100px
 	
 }
+table.badge td {
+	width: 128px;
+	height:128px;
+}
+
+.badge {
+	position:relative;
+	height:128px;
+	height:128px;
+}
 
 .default-profile-index {
-	margin-top:-10px;
-	margin-bottom:-102px;
+	margin-top:0px;
+	margin-bottom:0px;
+	position:absolute;
 }
 
 .badge-index {
-	position: relative;
-	top:0px;
-	
+	position:absolute;
+	z-index:999;
 }
 
 .header-avatar {
@@ -34,7 +44,7 @@
 }
 
 .show_badge {
-	margin-left:-132px
+	margin-left:-128px
 }
 
 // .table-content-index {

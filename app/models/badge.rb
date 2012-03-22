@@ -4,6 +4,7 @@ class Badge < ActiveRecord::Base
   validates :image_url, :presence => true
   validates :description, :presence => true
   validates :owner_id, :presence => true
+  validates :category, :presence => true
   
   has_many :users, :through => :badgehistories
   has_many :badgehistories
