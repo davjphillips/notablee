@@ -6,18 +6,19 @@ class BadgesController < ApplicationController
   end
 
   def show
-    if current_user
-      @user = current_user
-      @user.badge_id = params[:id]
-      @user.save
-      @display_avatar = current_user.avatar_url
-      @badge = current_user.badge
-    end
+    @badge = Badge.find(params[:id])
   end
 
   def update
-    Badgehistory.create(:user_id => current_user.id, :badge_id => params[:id], :user_followers_snapshot => Twitter.user(current_user.username).followers_count)
-    current_user.create_notablee_url
-    @display_avatar = get_display_avatar
+    if current_user
+      Badgehistory.create(:user_id => current_user.id, 
+                          :badge_id => params[:id], 
+                          :user_followers_snapshot => Twitter.user(current_user.username).followers_count
+                          )
+      current_user.create_notablee_url
+      @display_avatar = get_display_avatar
+    else
+      redirect_to auth_twitter_path
+    end
   end
 end
