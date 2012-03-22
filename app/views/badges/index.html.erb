@@ -1,17 +1,8 @@
-<table class="table table-condensed">
- <thead>
-    <tr>
-      <th>Startups</th>
-      <th>Causes</th>
-			<th>National</th>
-      <th>Sports</th>
-    </tr>
-  </thead>
-</table>
+<br />
 
-<table class="table table-condensed">
+<table>
 	<% @count = @badges.count%>
-	<% @badge_rows = @badges.each_slice(4).to_a %>
+	<% @badge_rows = @badges.each_slice(3).to_a %>
 
 	<% @badge_rows.each do |badge_row| %>
 	<tr>
@@ -32,17 +23,22 @@
 															:onclick => 'alert("You need to be signed in to do that, friend.")'
 															)%>
 				<% end %>
+				<div id="badge-details">
+				<b><%= badge.title %></b><br />
+				<a>See more..</a>
+				<% if badge.badgehistories.total_followers(badge.id) != nil %>
+					<div id="badge-followers" class="well-follower"><%= badge.badgehistories.total_followers(badge.id)%><br/><span style="font-size:12px;">follower reach</div><br />
+				<% else %>
+				<div id="badge-followers" class="well-follower">0<br/><span style="font-size:12px;">be the first one!</div><br />
+				<% end %>	
 			</div>
-			<div>
-			<p><b>Title:</b> <%= badge.title %><br />
-			<b>Follower Reach:</b> <%= badge.badgehistories.total_followers(badge.id) %><br />
-			>></p>
-			</div>
+			
 		</td>
 		<% end %>
 	</tr>
 	<% end %>
 </table>
+<image_tag >
 
 </div>
 </div>
