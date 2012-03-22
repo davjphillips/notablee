@@ -19,19 +19,12 @@
 		<td>
 			<div class="badge">
 				<%= image_tag @display_avatar, :class => "default-profile-index", :size => "128x128" %>
-				<% if user_signed_in? %>
 				<%= link_to(image_tag(badge.image_url,
 															:class => "badge-index", 
 															:size => "128x128" ), 
 															badge_path(badge.id)
-															)%>
-				<% else %>
-				<%= link_to(image_tag(badge.image_url, 
-															:class => "badge-index", 
-															:size => "128x128" ), "#", 
-															:onclick => 'alert("You need to be signed in to do that, friend.")'
-															)%>
-				<% end %>
+															)%>				
+				
 			</div>
 			<div>
 			<p><b>Title:</b> <%= badge.title %><br />

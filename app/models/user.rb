@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :owned_badges, :foreign_key => :owner_id
   has_many :authentications
   
+  delegate :image_url, :to => :badge, :prefix => true
+  
   def self.new_user_with_auth(omniauth)
     user = User.new
     username = omniauth['info']['nickname']
