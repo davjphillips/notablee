@@ -17,8 +17,6 @@ class User < ActiveRecord::Base
   has_many :owned_badges, :foreign_key => :owner_id
   has_many :authentications
   
-  @notablee_message = "This is a completely different message than the other one."
-  
   def self.new_user_with_auth(omniauth)
     user = User.new
     username = omniauth['info']['nickname']
@@ -66,24 +64,28 @@ class User < ActiveRecord::Base
     Twitter.update_profile_image(img)
     File.delete("#{self.username}.png")
   end
-  
-  def update_tweet_status(message)
-    Twitter.update(message)
-  end
-  
-  def create_notablee_url
-    original_avatar = MiniMagick::Image.open(self.avatar_url)
-    notablee_avatar = original_avatar.composite(MiniMagick::Image.open("app/assets/images/" + Badge.find_by_id(self.badge_id).image_url))
-    notablee_avatar.write "#{self.username}.png"
-    @notablee_url = File.open("#{self.username}.png")
-    
-    token = self.authentications.first.oauth_token
-    secret = self.authentications.first.oauth_secret
-  
-    update_profile_image(@notablee_url, token, secret)
 
-    Twitter.follow("notableeme")
-    Twitter.update("I just added the #notablee badge protesting SOPA / KONY at notablee.me")
+  def create_notablee_url
+    if Twitter.profile_image(self.username) == Badge.find(self.badge_id).image_url
+      flash[:alert] = "You already have that badge foo!"
+    else
+      original_avatar = MiniMagick::Image.open(self.avatar_url)
+      notablee_avatar = original_avatar.composite(MiniMagick::Image.open("app/assets/images/" + Badge.find_by_id(self.badge_id).image_url))
+      notablee_avatar.write "#{self.username}.png"
+      @notablee_url = File.open("#{self.username}.png")
+    
+      token = self.authentications.first.oauth_token
+      secret = self.authentications.first.oauth_secret
+  
+      update_profile_image(@notablee_url, token, secret)
+      @badge_name = Badge.find(self.badge_id).title
+      begin 
+        Twitter.follow("notableeme")
+        Twitter.update("I just added the #{@badge_name} #notablee badge. Get yours at notablee.me/badges/#{self.badge_id}")
+      rescue Twitter::Error::Forbidden
+        #do nothing
+      end
+    end
   end
   
   
