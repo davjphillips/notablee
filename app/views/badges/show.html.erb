@@ -1,6 +1,29 @@
 <br />
+<table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Title</th>
+						<th>Description</th>
+            <th>Downloads</th>
+            <th>Follower Reach</th>
+          </tr>
+        </thead>
+
 <%= link_to image_tag @display_avatar %>
 <%= link_to(image_tag(@badge.image_url, :class => "show_badge"), badge_path(@badge.id)) %>
 <p>
 <%= link_to "Use this Badge", badge_path, :method => 'put',  :class=> "btn btn-large btn-success" %>
 </p>
+
+<tbody>
+  <tr width="940">
+    <td width="17%" style="padding-top: 20px"><%= @badge.title %></td>
+		<br />
+    <td width="54.5%" style="padding-top: 20px"><%= @badge.description %></td>
+		<br />
+		<td width="15.5%" style="padding-top: 20px"><%= @badge.badgehistories.download_count(@badge.id) %></td>
+		<br />
+    <td width="17%" style="padding-top: 20px"><b><%= @badge.badgehistories.total_followers(@badge.id) %></b></td>  
+  </tr>
+</tbody>
+</table>
