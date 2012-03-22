@@ -1,6 +1,13 @@
 Notablee::Application.routes.draw do
   match '/auth/:provider/callback' => 'authentications#create'
   resources :authentications
+  
+  match 'users/sign_up' => redirect('/404.html')
+  match 'users/sign_in' => redirect('/404.html')
+  match 'users/password' => redirect('/404.html')
+  match 'users/password/new' => redirect('/404.html')
+  match 'users/password/edit' => redirect('/404.html')
+    
   devise_for :users, :controllers => {:registrations => 'registrations'}
   resources :badges, :only => [:index, :show, :update]
   
