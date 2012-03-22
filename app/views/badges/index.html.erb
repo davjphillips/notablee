@@ -8,9 +8,8 @@
 		<div id="myTabContent" class="tab-content">
     	<div class="tab-pane fade" id="causes">
 				<table>
-					<% @count = @badges.count%>
 					<% @badge_rows = @badges.each_slice(3).to_a %>
-
+					
 					<% @badge_rows.each do |badge_row| %>
 					<tr>
 						
@@ -18,19 +17,11 @@
 						<td>
 							<div class="badge">
 								<%= image_tag @display_avatar, :class => "default-profile-index", :size => "128x128" %>
-								<% if user_signed_in? %>
 								<%= link_to(image_tag(badge.image_url,
 																			:class => "badge-index", 
 																			:size => "128x128" ), 
 																			badge_path(badge.id)
 																			)%>
-								<% else %>
-								<%= link_to(image_tag(badge.image_url, 
-																			:class => "badge-index", 
-																			:size => "128x128" ), "#", 
-																			:onclick => 'alert("You need to be signed in to do that, friend.")'
-																			)%>
-								<% end %>
 								<div id="badge-details">
 								<b><%= badge.title %></b><br />
 								<a href="#">See more...</a>
@@ -40,7 +31,6 @@
 								<div id="badge-followers" class="well-follower">0<br/><span style="font-size:12px;">be the first one!</div><br />
 								<% end %>	
 							</div>
-
 						</td>
 						<% end %>
 					</tr>
@@ -57,11 +47,3 @@
         <p>HILARIOUS!</p>
       </div>
     </div>
-
-
-
-
-
-
-
-
