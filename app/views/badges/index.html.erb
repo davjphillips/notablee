@@ -1,29 +1,49 @@
-<br />
 <table class="table table-condensed">
-        <thead>
-          <tr>
-            <th>Badge</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Follower Reach</th>
-          </tr>
-        </thead>
-				<% @badges.each do |badge| %>
-        <tbody>
-          <tr width="940">
-            <td width="11.5%">
-							<%= image_tag @display_avatar, :class => "default-profile-index" %>
-							<% if user_signed_in? %>
-							<%= link_to(image_tag(badge.image_url, :class => "badge-index"), badge_path(badge.id))%>
-							<% else %>
-							<%= link_to(image_tag(badge.image_url, :class => "badge-index"), "#", :onclick => 'alert("You need to be signed in to do that, friend.")')%>
-							<% end %>
-						</td>
-            <td width="17%" style="padding-top: 20px"><%= badge.title %></td>
-            <td width="54.5%" style="padding-top: 20px"><%= badge.badgehistories.download_count(badge.id) %></td>
-            <td width="17%" style="padding-top: 20px"><b><%= badge.badgehistories.total_followers(badge.id) %></b></td>
-            
-          </tr>
-					<% end %>
-				</tbody>
+ <thead>
+    <tr>
+      <th>Startups</th>
+      <th>Causes</th>
+			<th>National</th>
+      <th>Sports</th>
+    </tr>
+  </thead>
 </table>
+
+<table class="table table-condensed">
+	<% @count = @badges.count%>
+	<% @badge_rows = @badges.each_slice(4).to_a %>
+
+	<% @badge_rows.each do |badge_row| %>
+	<tr>
+		<%badge_row.each do |badge| %>
+		<td>
+			<div class="badge">
+				<%= image_tag @display_avatar, :class => "default-profile-index", :size => "128x128" %>
+				<% if user_signed_in? %>
+				<%= link_to(image_tag(badge.image_url,
+															:class => "badge-index", 
+															:size => "128x128" ), 
+															badge_path(badge.id)
+															)%>
+				<% else %>
+				<%= link_to(image_tag(badge.image_url, 
+															:class => "badge-index", 
+															:size => "128x128" ), "#", 
+															:onclick => 'alert("You need to be signed in to do that, friend.")'
+															)%>
+				<% end %>
+			</div>
+			<div>
+			<p><b>Title:</b> <%= badge.title %><br />
+			<b>Follower Reach:</b> <%= badge.badgehistories.total_followers(badge.id) %><br />
+			>></p>
+			</div>
+		</td>
+		<% end %>
+	</tr>
+	<% end %>
+</table>
+
+</div>
+</div>
+
