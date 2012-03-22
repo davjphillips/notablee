@@ -47,6 +47,13 @@ b6 = Badge.create!( :title => 'Umerica',
                   :owner_id  => 1,
                   :category => "Countries")
                   
+b7 = Badge.create!( :title => 'Syria', 
+                 :description => '#SYRIA #SYRIA #SYRIA', 
+                 :image_url => 'syria.png',
+                 :owner_id  => 1,
+                 :category => "Countries")
+
+                  
                   
 
 puts "it worked!"                  
