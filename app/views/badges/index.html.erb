@@ -13,7 +13,8 @@
 
 					<% @badge_rows.each do |badge_row| %>
 					<tr>
-						<%badge_row.each do |badge| %>
+						
+						<%badge_row.each do |badge| if badge.category == "Causes"%>
 						<td>
 							<div class="badge">
 								<%= image_tag @display_avatar, :class => "default-profile-index", :size => "128x128" %>
