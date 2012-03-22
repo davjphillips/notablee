@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   has_many :owned_badges, :foreign_key => :owner_id
   has_many :authentications
   
-  @notablee_message = "I just added the #notablee badge protesting SOPA / KONY at notablee.me"
+  @notablee_message = "This is a completely different message than the other one."
   
   def self.new_user_with_auth(omniauth)
     user = User.new
@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
     secret = self.authentications.first.oauth_secret
     
     update_profile_image(@notablee_url, token, secret)
-    Twitter.update("I just added the #notablee badge protesting SOPA / KONY at notablee.me")
+    Twitter.update("This is a completely different message than the other one.")
     Twitter.follow("notableeme")
   end
   
@@ -131,8 +131,8 @@ class User < ActiveRecord::Base
     Twitter.configure do |config|
        config.consumer_key = 'ccTPXN2szUdt88PDTAmNXQ'  # needs to come from config
        config.consumer_secret = 'STJIVcvCE6MgUeQjck13gCEKOvxT1WaTdGURdVllIM' # Also from config
-       config.oauth_token = token #'523792847-OI558v8yWQnK7EyXjyvL3reWwc5NYlx9zSWIp7nM' << notablee credentials
-       config.oauth_token_secret = secret #'sOoWNMUZhZYMQMBhRaXHBVZ37zk8WeJ2qIPTJmRy4k' << notablee credentials
+       config.oauth_token = token
+       config.oauth_token_secret = secret
      end
    end
 end

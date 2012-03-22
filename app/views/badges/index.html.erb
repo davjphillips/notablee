@@ -1,49 +1,48 @@
-<br />
 <table class="table table-condensed">
  <thead>
-           <tr>
-             <th>Startups</th>
-             <th>Causes</th>
- 						<th>National</th>
-             <th>Sports</th>
-           </tr>
-         </thead>
+    <tr>
+      <th>Startups</th>
+      <th>Causes</th>
+			<th>National</th>
+      <th>Sports</th>
+    </tr>
+  </thead>
 </table>
-<div >
+
 <table class="table table-condensed">
-        <!-- <thead>
-                 <tr>
-                   <th>Badge</th>
-                   <th>Title</th>
-       						<th>Download Count</th>
-                   <th>Follower Reach</th>
-                 </tr>
-               </thead> -->
-				<% @badges.each do |badge| %>
-        <tbody>
-          <tr style="border:1px solid red;" >
-            <td style="width:100px;height:100px;border:1px solid blue;" >
-							<%= image_tag @display_avatar, :class => "default-profile-index", :size => "100x100" %>
-							<% if user_signed_in? %>
-							<%= link_to(image_tag(badge.image_url, :class => "badge-index", :size => "100x100" ), badge_path(badge.id))%>
-							<% else %>
-							<%= link_to(image_tag(badge.image_url, :class => "badge-index", :size => "100x100" ), "#", :onclick => 'alert("You need to be signed in to do that, friend.")')%>
-							<% end %>
-						</td>
-            <td style="border:1px solid red;">
-							<p>Title: <%= badge.title %></p>
-						</td>
-						<td style="border:1px solid red;">
-							<p>Follower Reach: <%= badge.badgehistories.total_followers(badge.id) %></p>
-						</td>
-						<td style="border:1px solid red;">
-							<p>>></p>
-						</td>
-          </tr>
-					<% end %>
-				</tbody>
+	<% @count = @badges.count%>
+	<% @badge_rows = @badges.each_slice(4).to_a %>
+
+	<% @badge_rows.each do |badge_row| %>
+	<tr>
+		<%badge_row.each do |badge| %>
+		<td>
+			<div class="badge">
+				<%= image_tag @display_avatar, :class => "default-profile-index", :size => "128x128" %>
+				<% if user_signed_in? %>
+				<%= link_to(image_tag(badge.image_url,
+															:class => "badge-index", 
+															:size => "128x128" ), 
+															badge_path(badge.id)
+															)%>
+				<% else %>
+				<%= link_to(image_tag(badge.image_url, 
+															:class => "badge-index", 
+															:size => "128x128" ), "#", 
+															:onclick => 'alert("You need to be signed in to do that, friend.")'
+															)%>
+				<% end %>
+			</div>
+			<div>
+			<p><b>Title:</b> <%= badge.title %><br />
+			<b>Follower Reach:</b> <%= badge.badgehistories.total_followers(badge.id) %><br />
+			>></p>
+			</div>
+		</td>
+		<% end %>
+	</tr>
+	<% end %>
 </table>
-</div>
 
 </div>
 </div>
