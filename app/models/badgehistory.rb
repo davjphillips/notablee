@@ -12,4 +12,5 @@ class Badgehistory < ActiveRecord::Base
     array_of_followers = badge_history_by_badge.map { |f| f.user_followers_snapshot }
     array_of_followers.inject { |f, sum| sum + f }
   end
+  
 end
