@@ -1,5 +1,5 @@
 Notablee::Application.routes.draw do
-  get "badgehistories/create"
+  put "badges/update"
 
   match '/auth/:provider/callback' => 'authentications#create'
   resources :authentications

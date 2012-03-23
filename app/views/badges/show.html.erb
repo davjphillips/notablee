@@ -1,34 +1,41 @@
 <br />
-<table class="table table-condensed">
-        <thead>
-          <tr>
-            <th>Title</th>
-						<th>Description</th>
-            <th>Downloads</th>
-            <th>Follower Reach</th>
-          </tr>
-        </thead>
+<div class="container">
 
-<% if current_user %>
-	<%=image_tag(current_user.avatar_url)%>
-<% else %>
-	<%=image_tag "default-pro.png" %>
-<% end %>
-<%= image_tag(@badge.image_url, :class => "show_badge") %>
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="badge-unit" style="text-align:center;">
+        <h1><%= @badge.title %></h1>
+				<br />
+        <p><% if current_user %>
+					<%=image_tag(current_user.avatar_url)%>
+				<% else %>
+					<%=image_tag "default-pro.png" %>
+				<% end %>
+				<%= image_tag(@badge.image_url, :class => "show_badge") %>
+				</p>
+				<p>
+				<!-- ADD THE ROUTE HERE!!! DJP -->
+				<%= link_to "Join the party!", "#",  :class=> "btn btn-large btn-primary", :style => "font-size:24px"%>
+				</p>
+      </div>
 
-<p>
-<%= link_to "Use this Badge", badgehistories_create_path,  :class=> "btn btn-large btn-success" %>
-</p>
+      <div class="row" style="text-align:center;">
+				<div class="badge-unit-small span4" >
+          <h2>Description</h2><br />
+          <p><%= @badge.description %></p>
+          
+        </div>
+        <div class="badge-unit-small span4">
+          <h2>Follower Reach</h2>
+					<% if @badge.badgehistories.total_followers(@badge.id) != nil %>
+						<%= @badge.badgehistories.total_followers(@badge.id)%><br/>
+					<% else %>
+					<p><h2>0</h2></p>
+					<% end %>
+        </div>
+				<div class="badge-unit-small span4">
+          <h2>Downloads</h2>
+           <p><h2><%= @badge.badgehistories.download_count(@badge.id) %></h2></p>
+       </div>
+      </div>
+    </div>
 
-<tbody>
-  <tr width="940">
-    <td width="17%" style="padding-top: 20px"><%= @badge.title %></td>
-		<br />
-    <td width="54.5%" style="padding-top: 20px"><%= @badge.description %></td>
-		<br />
-		<td width="15.5%" style="padding-top: 20px"><%= @badge.badgehistories.download_count(@badge.id) %></td>
-		<br />
-    <td width="17%" style="padding-top: 20px"><b><%= @badge.badgehistories.total_followers(@badge.id) %></b></td>  
-  </tr>
-</tbody>
-</table>
