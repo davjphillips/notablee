@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
     File.delete("#{self.username}.png")
   end
 
-  def create_notablee_url
+  def create_notablee_url(badge_id)
     if Twitter.profile_image(self.username) == Badge.find(self.badge_id).image_url
       flash[:alert] = "You already have that badge foo!"
     else

@@ -17,7 +17,7 @@
 <%= image_tag(@badge.image_url, :class => "show_badge") %>
 
 <p>
-<%= link_to "Use this Badge", badgehistories_create_path,  :class=> "btn btn-large btn-success" %>
+<%= link_to "Use this Badge", badge_path, :method => 'put', :class=> "btn btn-large btn-success" %>
 </p>
 
 <tbody>
