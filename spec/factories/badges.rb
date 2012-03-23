@@ -6,5 +6,6 @@ FactoryGirl.define do
     image_url "http://google.com/whatever.jpg"
     description "my describer"
     owner_id 1
+    category "Country"
   end
 end

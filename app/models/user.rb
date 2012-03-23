@@ -69,23 +69,22 @@ class User < ActiveRecord::Base
 
 
   def create_notablee_url
+    original_avatar = MiniMagick::Image.open(self.avatar_url)
+    notablee_avatar = original_avatar.composite(MiniMagick::Image.open("app/assets/images/" + Badge.find_by_id(self.badge_id).image_url))
+    notablee_avatar.write "#{self.username}.png"
+    @notablee_url = File.open("#{self.username}.png")
 
-      original_avatar = MiniMagick::Image.open(self.avatar_url)
-      notablee_avatar = original_avatar.composite(MiniMagick::Image.open("app/assets/images/" + Badge.find_by_id(self.badge_id).image_url))
-      notablee_avatar.write "#{self.username}.png"
-      @notablee_url = File.open("#{self.username}.png")
-    
-      token = self.authentications.first.oauth_token
-      secret = self.authentications.first.oauth_secret
-      
-      update_profile_image(@notablee_url, token, secret)
-      @badge_name = Badge.find(self.badge_id).title
-      begin 
-        Twitter.follow("notableeme")
-        Twitter.update("I just added the #{@badge_name} #notablee badge. Get yours at notablee.me/badges/#{self.badge_id}")
-      rescue Twitter::Error::Forbidden
-        #do nothing
-      end
+    token = self.authentications.first.oauth_token
+    secret = self.authentications.first.oauth_secret
+  
+    update_profile_image(@notablee_url, token, secret)
+    @badge_name = Badge.find(self.badge_id).title
+    begin 
+      Twitter.follow("notableeme")
+      Twitter.update("I just added the #{@badge_name} #notablee badge. Get yours at notablee.me/badges/#{self.badge_id}")
+    rescue Twitter::Error::Forbidden
+      #do nothing
+    end
   end
   
   
