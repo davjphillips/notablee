@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
       rescue Twitter::Error::Forbidden
         #do nothing
       end
-    #end
+    end
   end
   
   
