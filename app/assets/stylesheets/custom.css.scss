@@ -18,7 +18,9 @@ table.badge td {
 .badge {
 	position:relative;
 	height:128px;
-	height:128px;
+	width:330px;
+	margin-bottom:30px;
+	margin-top:30px
 }
 
 .default-profile-index {
@@ -46,6 +48,35 @@ table.badge td {
 .show_badge {
 	margin-left:-128px
 }
+
+#badge-details{
+	margin-left:135px;
+}
+
+#badge-followers {
+	position:absolute;
+	font-size:32px;
+	margin-top:28px;
+	text-align:center;
+}
+
+.well-follower {
+min-height: 20px;
+padding: 19px;
+margin-bottom: 20px;
+background-color: whiteSmoke;
+border: 1px solid #EEE;
+border: 1px solid rgba(0, 0, 0, 0.05);
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+padding-top: 12px;
+padding-bottom: 5px;
+}
+
 
 // .table-content-index {
 // 	padding-top: 20px;

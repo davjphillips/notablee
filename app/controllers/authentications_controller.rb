@@ -12,7 +12,9 @@ class AuthenticationsController < ApplicationController
     if authentication
       authentication.user.update_profile(omniauth)
       flash[:notice] = "Authentication Successful with Twitter"
-      sign_in_and_redirect(:user, authentication.user)
+   
+      sign_in(:user, authentication.user)
+      redirect_to badges_path
     elsif current_user 
       current_user.associate_authentication(omniauth)
       flash[:notice] = "Authentication Successful"
@@ -21,7 +23,8 @@ class AuthenticationsController < ApplicationController
       user = User.new_user_with_auth(omniauth)
       if user.save
         flash[:notice] = "Signed in successfully."
-        sign_in_and_redirect(:user, user)
+        sign_in(:user, authentication.user)
+        redirect_to badges_path
       else
         session[:omniauth] = omniauth.except('extra')
         redirect_to new_user_registration_path
