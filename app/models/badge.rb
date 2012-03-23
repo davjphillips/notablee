@@ -10,6 +10,10 @@ class Badge < ActiveRecord::Base
   has_many :badgehistories
   belongs_to :owner, :class_name => :user
   
+  def to_param
+    title
+  end
+  
   def user_count
     users.count
   end

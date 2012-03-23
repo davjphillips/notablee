@@ -155,6 +155,8 @@ Badge.create!( :title => 'Indonesia',
               :image_url => 'indonesia.png',
               :owner_id  => 1,
               :category => "Countries")
+
+
                   
 
 puts "it worked!"                  
