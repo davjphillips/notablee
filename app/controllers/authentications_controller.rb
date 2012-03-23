@@ -1,16 +1,17 @@
 class AuthenticationsController < ApplicationController
-
-  before_filter :check_authentications, :only => :create
+  skip_before_filter :store_location
   
   def index
     @authentications = current_user.authentications if current_user
   end
   
-  def create 
+  def create
+    user = check_authentications
     if user.save
       flash[:notice] = "Signed in successfully."
       sign_in_and_redirect(:user, user)
     else
+      puts "NEW USER"
       session[:omniauth] = omniauth.except('extra')
       redirect_to new_user_registration_path
     end
@@ -33,7 +34,7 @@ class AuthenticationsController < ApplicationController
       authentication.user.update_profile(omniauth)
       flash[:notice] = "Authentication Successful with Twitter"
       sign_in_and_redirect(:user, authentication.user)
-    elsif current_user 
+    elsif current_user
       current_user.associate_authentication(omniauth)
       flash[:notice] = "Authentication Successful"
       redirect_to root_path
@@ -41,4 +42,5 @@ class AuthenticationsController < ApplicationController
       user = User.new_user_with_auth(omniauth)
     end
   end
+
 end
