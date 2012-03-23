@@ -1,6 +1,7 @@
 class BadgesController < ApplicationController
    before_filter :require_sign_in, :only => :update
    
+   
   def index
     @badges = Badge.all.sort_by!{ |badge| badge.users.count }.reverse
     @display_avatar = get_display_avatar
@@ -21,9 +22,11 @@ class BadgesController < ApplicationController
   end
   
   private
+  
+
+  
   def require_sign_in
     if !current_user
-      session[:user_return_to] = request.env['PATH_INFO']
       redirect_to auth_twitter_path
     end
   end
