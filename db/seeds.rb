@@ -83,7 +83,35 @@ b12 = Badge.create!( :title => 'USA',
                 :owner_id  => 1,
                 :category => "Countries")
 
+b12 = Badge.create!( :title => 'Roadtrippers', 
+                :description => '#ROADTRIPPERS #ROADTRIPPERS #ROADTRIPPERS', 
+                :image_url => 'roadtrippers.png',
+                :owner_id  => 1,
+                :category => "Organizations")
+                
+b13 = Badge.create!( :title => 'College Desis', 
+                :description => '#COLLEGE DESIS #COLLEGE DESIS #COLLEGE DESIS', 
+                :image_url => 'collegedesis.png',
+                :owner_id  => 1,
+                :category => "Organizations")
+                
+b14 = Badge.create!( :title => 'Leap', 
+                :description => '#LEAP #LEAP #LEAP', 
+                :image_url => 'leap.png',
+                :owner_id  => 1,
+                :category => "Organizations")
                   
+b15 = Badge.create!( :title => 'Choremonster', 
+                :description => '#CHOREMONSTER #CHOREMONSTER #CHOREMONSTER', 
+                :image_url => 'choremonster.png',
+                :owner_id  => 1,
+                :category => "Organizations")
+                
+b16 = Badge.create!( :title => 'Keepio', 
+                :description => '#KEEPIO #KEEPIO #KEEPIO', 
+                :image_url => 'keepio.png',
+                :owner_id  => 1,
+                :category => "Organizations")
                   
 
 puts "it worked!"                  

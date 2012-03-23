@@ -67,7 +67,8 @@ class User < ActiveRecord::Base
     File.delete("#{self.username}.png")
   end
 
-  def create_notablee_url(badge_id)
+
+  def create_notablee_url
     if Twitter.profile_image(self.username) == Badge.find(self.badge_id).image_url
       flash[:alert] = "You already have that badge foo!"
     else
@@ -87,7 +88,7 @@ class User < ActiveRecord::Base
       rescue Twitter::Error::Forbidden
         #do nothing
       end
-    end
+    #end
   end
   
   
