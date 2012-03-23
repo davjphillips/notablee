@@ -40,12 +40,6 @@ b5 = Badge.create!( :title => 'Notablee',
                   :image_url => 'notableeme.png',
                   :owner_id  => 1,
                   :category => "Organizations")
-
-b6 = Badge.create!( :title => 'Umerica', 
-                  :description => 'Land of the free and the home of the brave', 
-                  :image_url => 'american.png',
-                  :owner_id  => 1,
-                  :category => "Countries")
                   
 b7 = Badge.create!( :title => 'Syria', 
                  :description => '#SYRIA #SYRIA #SYRIA', 
@@ -112,6 +106,31 @@ b16 = Badge.create!( :title => 'Keepio',
                 :image_url => 'keepio.png',
                 :owner_id  => 1,
                 :category => "Organizations")
+                
+b17 = Badge.create!( :title => 'Germany', 
+                :description => '#GERMANY #GERMANY #GERMANY', 
+                :image_url => 'germany.png',
+                :owner_id  => 1,
+                :category => "Countries")
+                
+Badge.create!( :title => 'Mexico', 
+              :description => '#MEXICO #MEXICO #MEXICO', 
+              :image_url => 'mexico.png',
+              :owner_id  => 1,
+              :category => "Countries")
+
+Badge.create!( :title => 'USA Stars', 
+              :description => '#USA #USA #USA', 
+              :image_url => 'USA2.png',
+              :owner_id  => 1,
+              :category => "Countries")
+              
+
+Badge.create!( :title => 'Bangladesh', 
+              :description => '#BANGLADESH #BANGLADESH #BANGLADESH', 
+              :image_url => 'bangladesh.png',
+              :owner_id  => 1,
+              :category => "Countries")
                   
 
 puts "it worked!"                  
