@@ -46,7 +46,7 @@ table.badge td {
 }
 
 .show_badge {
-	margin-left:-128px
+	margin-left:-132px
 }
 
 #badge-details{
@@ -101,6 +101,16 @@ background-color: whiteSmoke;
 -webkit-border-radius: 6px;
 -moz-border-radius: 6px;
 border-radius: 6px;
+}
+
+#badge-show-use{
+	margin-top:190px;
+}
+
+.grey-arrow-light {
+background: url('grey-arrow-light') no-repeat 50% 0;
+margin-top:-20px;
+height: 40px;
 }
 // .table-content-index {
 // 	padding-top: 20px;
