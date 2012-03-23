@@ -47,6 +47,43 @@ b6 = Badge.create!( :title => 'Umerica',
                   :owner_id  => 1,
                   :category => "Countries")
                   
+b7 = Badge.create!( :title => 'Syria', 
+                 :description => '#SYRIA #SYRIA #SYRIA', 
+                 :image_url => 'syria.png',
+                 :owner_id  => 1,
+                 :category => "Countries")
+                 
+b8 = Badge.create!( :title => 'Spain', 
+                :description => '#SPAIN #SPAIN #SPAIN', 
+                :image_url => 'spain.png',
+                :owner_id  => 1,
+                :category => "Countries")
+                
+b9 = Badge.create!( :title => 'India', 
+                :description => '#INDIA #INDIA #INDIA', 
+                :image_url => 'india.png',
+                :owner_id  => 1,
+                :category => "Countries")
+                
+b10 = Badge.create!( :title => 'Pakistan', 
+                :description => '#PAKISTAN #PAKISTAN #PAKISTAN', 
+                :image_url => 'pakistan.png',
+                :owner_id  => 1,
+                :category => "Countries")
+                
+b11 = Badge.create!( :title => 'China', 
+                :description => '#CHINA #CHINA #CHINA', 
+                :image_url => 'china.png',
+                :owner_id  => 1,
+                :category => "Countries")
+
+b12 = Badge.create!( :title => 'USA', 
+                :description => '#USA #USA #USA', 
+                :image_url => 'USA.png',
+                :owner_id  => 1,
+                :category => "Countries")
+
+                  
                   
 
 puts "it worked!"                  
