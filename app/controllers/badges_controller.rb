@@ -9,6 +9,7 @@ class BadgesController < ApplicationController
 
   def show
     @badge = Badge.find(params[:id])
+    @display_avatar = get_display_avatar
   end
 
   def update
