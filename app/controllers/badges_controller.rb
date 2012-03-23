@@ -8,8 +8,6 @@ class BadgesController < ApplicationController
 
   def show
     @badge = Badge.find(params[:id])
-    current_user.badge_id = @badge.id
-    current_user.save
   end
 
   def update
