@@ -83,7 +83,7 @@ b12 = Badge.create!( :title => 'Roadtrippers',
                 :owner_id  => 1,
                 :category => "Organizations")
                 
-b13 = Badge.create!( :title => 'College Desis', 
+b13 = Badge.create!( :title => 'CollegeDesis', 
                 :description => '#COLLEGE DESIS #COLLEGE DESIS #COLLEGE DESIS', 
                 :image_url => 'collegedesis.png',
                 :owner_id  => 1,
