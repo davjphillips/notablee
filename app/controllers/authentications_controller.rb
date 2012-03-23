@@ -14,6 +14,7 @@ class AuthenticationsController < ApplicationController
       authentication.user.update_profile(omniauth)
       flash[:notice] = "Authentication Successful with Twitter"
       sign_in_and_redirect(:user, authentication.user)
+      
       # sign_in(:user, authentication.user)
       # session[:last_path] ? puts 1 :  redirect_to badges_path
     elsif current_user 
