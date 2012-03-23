@@ -24,7 +24,7 @@ class AuthenticationsController < ApplicationController
       user = User.new_user_with_auth(omniauth)
       if user.save
         flash[:notice] = "Signed in successfully."
-        sign_in_and_redirect(:user, authentication.user)
+        sign_in_and_redirect(:user, user)
         # sign_in(:user, authentication.user)
         # session[:last_path] ? redirect_to session[:last_path] : redirect_to badges_path
       else
