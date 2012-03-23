@@ -1,23 +1,18 @@
 class AuthenticationsController < ApplicationController
-
-
+  skip_before_filter :store_location
+  
   def index
     @authentications = current_user.authentications if current_user
   end
   
   def create
-    # render :text => request.env["omniauth.auth"].to_yaml
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-    
     if authentication
       authentication.user.update_profile(omniauth)
       flash[:notice] = "Authentication Successful with Twitter"
       sign_in_and_redirect(:user, authentication.user)
-      
-      # sign_in(:user, authentication.user)
-      # session[:last_path] ? puts 1 :  redirect_to badges_path
-    elsif current_user 
+    elsif current_user
       current_user.associate_authentication(omniauth)
       flash[:notice] = "Authentication Successful"
       redirect_to root_path
@@ -26,12 +21,11 @@ class AuthenticationsController < ApplicationController
       if user.save
         flash[:notice] = "Signed in successfully."
         sign_in_and_redirect(:user, user)
-        # sign_in(:user, authentication.user)
-        # session[:last_path] ? redirect_to session[:last_path] : redirect_to badges_path
       else
         session[:omniauth] = omniauth.except('extra')
         redirect_to new_user_registration_path
       end
+
     end
   end
 

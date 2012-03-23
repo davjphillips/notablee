@@ -83,7 +83,7 @@ Badge.create!( :title => 'Roadtrippers',
                 :owner_id  => 1,
                 :category => "Organizations")
                 
-Badge.create!( :title => 'College Desis', 
+Badge.create!( :title => 'CollegeDesis', 
                 :description => '#COLLEGE DESIS #COLLEGE DESIS #COLLEGE DESIS', 
                 :image_url => 'collegedesis.png',
                 :owner_id  => 1,
@@ -156,8 +156,35 @@ Badge.create!( :title => 'Indonesia',
               :owner_id  => 1,
               :category => "Countries")
 
+Badge.create!( :title => 'Canada', 
+              :description => '#CANADA #CANADA #CANADA', 
+              :image_url => 'canada.png',
+              :owner_id  => 1,
+              :category => "Countries")
 
-                  
+Badge.create!( :title => 'Trayvon R.I.P.', 
+              :description => '#', 
+              :image_url => 'RIP-TM.png',
+              :owner_id  => 1,
+              :category => "Causes")
+
+Badge.create!( :title => 'Trayvon TM', 
+              :description => '#', 
+              :image_url => 'TM.png',
+              :owner_id  => 1,
+              :category => "Causes")
+              
+Badge.create!( :title => 'Remember Trayvon Martin', 
+              :description => '#', 
+              :image_url => 'TMpic.png',
+              :owner_id  => 1,
+              :category => "Causes")
+              
+Badge.create!( :title => 'R.I.P. Trayvon Martin', 
+              :description => '#', 
+              :image_url => 'RIPTM.png',
+              :owner_id  => 1,
+              :category => "Causes")               
 
 puts "it worked!"                  
                   
