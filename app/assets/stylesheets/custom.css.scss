@@ -77,7 +77,31 @@ padding-top: 12px;
 padding-bottom: 5px;
 }
 
+.badge-unit {
+padding: 30px;
+margin-bottom: 30px;
+background-color: whiteSmoke;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+}
 
+.badge-unit h1 {
+margin-bottom: 0;
+font-size: 42px;
+line-height: 1;
+color: inherit;
+letter-spacing: -1px;
+}
+
+.badge-unit-small {
+padding: 0px;
+margin-bottom: 30px;
+background-color: whiteSmoke;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+}
 // .table-content-index {
 // 	padding-top: 20px;
 // }
