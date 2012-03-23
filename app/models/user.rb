@@ -69,9 +69,7 @@ class User < ActiveRecord::Base
 
 
   def create_notablee_url
-    if Twitter.profile_image(self.username) == Badge.find(self.badge_id).image_url
-      flash[:alert] = "You already have that badge foo!"
-    else
+
       original_avatar = MiniMagick::Image.open(self.avatar_url)
       notablee_avatar = original_avatar.composite(MiniMagick::Image.open("app/assets/images/" + Badge.find_by_id(self.badge_id).image_url))
       notablee_avatar.write "#{self.username}.png"
@@ -79,7 +77,7 @@ class User < ActiveRecord::Base
     
       token = self.authentications.first.oauth_token
       secret = self.authentications.first.oauth_secret
-  
+      
       update_profile_image(@notablee_url, token, secret)
       @badge_name = Badge.find(self.badge_id).title
       begin 
@@ -88,7 +86,6 @@ class User < ActiveRecord::Base
       rescue Twitter::Error::Forbidden
         #do nothing
       end
-    end
   end
   
   
