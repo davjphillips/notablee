@@ -18,7 +18,7 @@ table.badge td {
 .badge {
 	position:relative;
 	height:128px;
-	width:330px;
+	width:300px;
 	margin-bottom:30px;
 	margin-top:30px
 }
@@ -102,6 +102,26 @@ background-color: whiteSmoke;
 -moz-border-radius: 6px;
 border-radius: 6px;
 }
+
+.badge-unit-small {
+padding: 0px;
+margin-bottom: 30px;
+background-color: whiteSmoke;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+}
+
+.badge-unit-small-bottom {
+padding-top: 20px;
+padding-bottom: 20px;
+margin-bottom: 30px;
+background-color: whiteSmoke;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+}
+
 
 #badge-show-use{
 	margin-top:190px;

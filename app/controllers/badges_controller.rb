@@ -2,7 +2,12 @@ class BadgesController < ApplicationController
    before_filter :require_sign_in, :only => :update
    
   def index
-    @badges = Badge.all.sort_by!{ |badge| badge.users.count }.reverse
+    @badges = Badge.all
+    @category_hash = Hash.new {|hash, key| hash[key] = Array.new}
+    @badges.each do |badge|
+      @category_hash[badge.category] << badge
+    end
+    # @badges = Badge.all.sort_by!{ |badge| badge.users.count }.reverse
     @display_avatar = get_display_avatar
   end
 
@@ -19,6 +24,8 @@ class BadgesController < ApplicationController
     current_user.badge_id = params[:id]
     current_user.create_notablee_url
     @display_avatar = get_display_avatar
+    flash[:notice] = "Your notablee badge is now updated. Thanks for your support - continue to spread the word!"
+    redirect_to badge_path
   end
   
   private

@@ -1,108 +1,51 @@
-<br />
-<ul id="pill" class="nav nav-pills">
-            <li class=""><a href="#causes" data-toggle="tab">Causes</a></li>
-            <li class="active"><a href="#startups" data-toggle="tab">Startups</a></li>
-            <li class=""><a href="#countries" data-toggle="tab">Countries</a></li>
-            <li class=""><a href="#funny" data-toggle="tab">Funny</a></li>
-          </ul>
-		<div id="myTabContent" class="tab-content">
-    	<div class="tab-pane fade" id="causes">
-				<table>
-					<% @badge_rows = @badges.each_slice(3).to_a %>
-					
-					<% @badge_rows.each do |badge_row| %>
-					<tr>
-						<%badge_row.each do |badge| if badge.category == "Causes"%>
-						<td>
-							<div class="badge">
-								<%= image_tag @display_avatar, :class => "default-profile-index", :size => "128x128" %>
-								<%= link_to(image_tag(badge.image_url,
-																			:class => "badge-index", 
-																			:size => "128x128" ), 
-																			badge_path(badge.id)
-																			)%>
-								<div id="badge-details">
+<ul id = "pill" class ="nav nav-pills">
+<% @category_hash.keys.each_with_index do |category, index| %>
+<% if index == 0 %>
+	<li class ="active">
+<% else %>
+	<li class ="">		
+<% end %>
+		<a href="#<%=category.downcase %>" data-toggle="tab">
+			<%= category %>
+		</a>
+	</li>
+<% end %>
+</ul>
+
+
+<div id ="myTabContent" class="tab-content">
+	<% @category_hash.keys.each_with_index do |category, index| %>
+		<% if index == 0 %>
+			<div class = "tab-pane active" id = "<%=category.downcase%>">
+		<% else %>
+			<div class = "tab-pane fade" id = "<%=category.downcase%>">
+		<% end %>
+				<ul>
+				<% @category_hash[category].each do |badge| %>
+						<li class = "badge" style="display:inline-block;">
+							<%= image_tag @display_avatar, :class => "default-profile-index", :size => "128x128"%>
+							<%= link_to(image_tag(badge.image_url,
+																		:class=> "badge-index",
+																		:size => "128x128"),
+																		badge_path(badge.id)
+																		)%>
+							<div id="badge-details">
 								<b><%= badge.title %></b><br />
 								<a href="#">See more...</a>
 								<% if badge.badgehistories.total_followers(badge.id) != nil %>
-									<div id="badge-followers" class="well-follower"><%= badge.badgehistories.total_followers(badge.id)%><br/><span style="font-size:12px;">follower reach</div><br />
+									<div id="badge-followers" class="well-follower">
+										<%= badge.badgehistories.total_followers(badge.id)%><br />
+										<span style="font-size:12px;">follower reach
+									</div>
 								<% else %>
-								<div id="badge-followers" class="well-follower">0<br/><span style="font-size:12px;">be the first one!</div><br />
+									<div id="badge-followers" class="well-follower">
+										0<br />
+										<span style="font-size:12px;">be the first one!
+									</div>		
 								<% end %>
-								<% end %>
-									
 							</div>
-						</td>
-						<% end %>
-					</tr>
-					<% end %>
-				</table>
-      </div>
-      <div class="tab-pane fade active in" id="startups">
-        <table>
-					<% @badge_rows = @badges.each_slice(3).to_a %>
-					
-					<% @badge_rows.each do |badge_row| %>
-					<tr>
-						<%badge_row.each do |badge| if badge.category == "Organizations"%>
-						<td>
-							<div class="badge">
-								<%= image_tag @display_avatar, :class => "default-profile-index", :size => "128x128" %>
-								<%= link_to(image_tag(badge.image_url,
-																			:class => "badge-index", 
-																			:size => "128x128" ), 
-																			badge_path(badge.id)
-																			)%>
-								<div id="badge-details">
-								<b><%= badge.title %></b><br />
-								<a href="#">See more...</a>
-								<% if badge.badgehistories.total_followers(badge.id) != nil %>
-									<div id="badge-followers" class="well-follower"><%= badge.badgehistories.total_followers(badge.id)%><br/><span style="font-size:12px;">follower reach</div><br />
-								<% else %>
-								<div id="badge-followers" class="well-follower">0<br/><span style="font-size:12px;">be the first one!</div><br />
-								<% end %>
-								<% end %>
-									
-							</div>
-						</td>
-						<% end %>
-					</tr>
-					<% end %>
-				</table>
-      </div>
-    	<div class="tab-pane fade" id="countries">
-        <table>
-					<% @badge_rows = @badges.each_slice(3).to_a %>
-					
-					<% @badge_rows.each do |badge_row| %>
-					<tr>
-						<%badge_row.each do |badge| if badge.category == "Countries"%>
-						<td>
-							<div class="badge">
-								<%= image_tag @display_avatar, :class => "default-profile-index", :size => "128x128" %>
-								<%= link_to(image_tag(badge.image_url,
-																			:class => "badge-index", 
-																			:size => "128x128" ), 
-																			badge_path(badge.id)
-																			)%>
-								<div id="badge-details">
-								<b><%= badge.title %></b><br />
-								<a href="#">See more...</a>
-								<% if badge.badgehistories.total_followers(badge.id) != nil %>
-									<div id="badge-followers" class="well-follower"><%= badge.badgehistories.total_followers(badge.id)%><br/><span style="font-size:12px;">follower reach</div><br />
-								<% else %>
-								<div id="badge-followers" class="well-follower">0<br/><span style="font-size:12px;">be the first one!</div><br />
-								<% end %>
-								<% end %>
-									
-							</div>
-						</td>
-						<% end %>
-					</tr>
-					<% end %>
-				</table>
-      </div>
-    	<div class="tab-pane fade" id="funny">
-        <p>HILARIOUS!</p>
-      </div>
-    </div>
+						</li>
+				<% end %>
+		</div>
+	<% end %>
+</div>
