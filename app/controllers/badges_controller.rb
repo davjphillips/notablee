@@ -21,7 +21,7 @@ class BadgesController < ApplicationController
                         :badge_id => params[:id], 
                         :user_followers_snapshot => Twitter.user(current_user.username).followers_count
                         )
-    current_user.badge_id = params[:id]
+    current_user.badge_id = Badge.find_by_title(params[:id]).id
     current_user.create_notablee_url
     @display_avatar = get_display_avatar
     flash[:notice] = "Your notablee badge is now updated. Thanks for your support - continue to spread the word!"
