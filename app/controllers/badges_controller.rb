@@ -12,7 +12,7 @@ class BadgesController < ApplicationController
   end
 
   def show
-    @badge = Badge.find(params[:id])
+    @badge = Badge.find_by_title(params[:id])
     @display_avatar = get_display_avatar
   end
 

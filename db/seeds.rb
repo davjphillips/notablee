@@ -29,17 +29,17 @@ Badge.create!(:title => 'JOBS Act',
                    :owner_id  => 1,
                    :category => "Causes")
                   
-Badge.create!( :title => 'Dev Bootcamp', 
-                   :description => 'An intensive bootcamp for passionate learners to learn web development in 10 weeks.', 
-                   :image_url => 'devbootcamp.png',
-                   :owner_id  => 1,
-                   :category => "Organizations")
+# Badge.create!( :title => 'Dev Bootcamp', 
+#                    :description => 'An intensive bootcamp for passionate learners to learn web development in 10 weeks.', 
+#                    :image_url => 'devbootcamp.png',
+#                    :owner_id  => 1,
+#                    :category => "Organizations")
                    
-Badge.create!( :title => 'Notablee', 
-                  :description => 'Changing the world one picture at a time.', 
-                  :image_url => 'notableeme.png',
-                  :owner_id  => 1,
-                  :category => "Organizations")
+# Badge.create!( :title => 'Notablee', 
+#                   :description => 'Changing the world one picture at a time.', 
+#                   :image_url => 'notableeme.png',
+#                   :owner_id  => 1,
+#                   :category => "Organizations")
                   
 Badge.create!( :title => 'Syria', 
                  :description => '#SYRIA #SYRIA #SYRIA', 
@@ -119,7 +119,7 @@ Badge.create!( :title => 'Mexico',
               :owner_id  => 1,
               :category => "Countries")
 
-Badge.create!( :title => 'USA Stars', 
+Badge.create!( :title => 'USAstars', 
               :description => '#USA #USA #USA', 
               :image_url => 'USA2.png',
               :owner_id  => 1,
@@ -198,35 +198,48 @@ Badge.create!( :title => 'Canada',
               :owner_id  => 1,
               :category => "Countries")
 
-Badge.create!( :title => 'Trayvon R.I.P.', 
-              :description => '#', 
+Badge.create!( :title => 'RIP-Trayvon', 
+              :description => 'On the night of Feb.26th, Trayvon Martin, 17, was shot and killed by George Zimmerman, 28, in a suburban Orlando community.  
+                               The gunman has gone a month without being arrested, claiming self-defense.  There have been allegations of racism and an\
+                               investigation into how local police have handled the case.', 
               :image_url => 'RIP-TM.png',
               :owner_id  => 1,
               :category => "Causes")
 
-Badge.create!( :title => 'Trayvon TM', 
-              :description => '#', 
+Badge.create!( :title => 'Trayvon-TM', 
+              :description => 'On the night of Feb.26th, Trayvon Martin, 17, was shot and killed by George Zimmerman, 28, in a suburban Orlando community.  
+                               The gunman has gone a month without being arrested, claiming self-defense.  There have been allegations of racism and an\
+                               investigation into how local police have handled the case.  Trayvon was wearing a hoodie at the time...inspiring the protest
+                                for the "Million Hoodie March" in NYC demanding justice for the young Trayvon.', 
               :image_url => 'TM.png',
               :owner_id  => 1,
               :category => "Causes")
               
-Badge.create!( :title => 'Remember Trayvon Martin', 
-              :description => '#', 
+Badge.create!( :title => 'Remember-TM', 
+              :description => 'On the night of Feb.26th, Trayvon Martin, 17, was shot and killed by George Zimmerman, 28, in a suburban Orlando community.  
+                               The gunman has gone a month without being arrested, claiming self-defense.  There have been allegations of racism and an\
+                               investigation into how local police have handled the case.  Trayvon was wearing a hoodie at the time...inspiring the protest
+                                for the "Million Hoodie March" in NYC demanding justice for the young Trayvon.', 
               :image_url => 'TMpic.png',
               :owner_id  => 1,
               :category => "Causes")
               
-Badge.create!( :title => 'R.I.P. Trayvon Martin', 
-              :description => '#', 
+Badge.create!( :title => 'Trayvon-Martin', 
+              :description => 'On the night of Feb.26th, Trayvon Martin, 17, was shot and killed by George Zimmerman, 28, in a suburban Orlando community.  
+                               The gunman has gone a month without being arrested, claiming self-defense.  There have been allegations of racism and an\
+                               investigation into how local police have handled the case.  Trayvon was wearing a hoodie at the time...inspiring the protest
+                                for the "Million Hoodie March" in NYC demanding justice for the young Trayvon.', 
               :image_url => 'RIPTM.png',
               :owner_id  => 1,
               :category => "Causes")               
 
-Badge.create!( :title => 'Hoodies Up', 
-              :description => '#', 
+Badge.create!( :title => 'Hoodies-Up', 
+              :description => 'On the night of Feb.26th, Trayvon Martin, 17, was shot and killed by George Zimmerman, 28, in a suburban Orlando community.  
+                             The gunman has gone a month without being arrested, claiming self-defense.  There have been allegations of racism and an\
+                             investigation into how local police have handled the case. Trayvon was wearing a hoodie at the time...inspiring the protest
+                             for the "Million Hoodie March" in NYC demanding justice for the young Trayvon.', 
               :image_url => 'hoodiesup.png',
               :owner_id  => 1,
               :category => "Causes")
-puts "it worked!"                  
                   
                   

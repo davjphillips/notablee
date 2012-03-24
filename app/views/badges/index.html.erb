@@ -27,11 +27,11 @@
 							<%= link_to(image_tag(badge.image_url,
 																		:class=> "badge-index",
 																		:size => "128x128"),
-																		badge_path(badge.id)
+																		badge_path(badge)
 																		)%>
 							<div id="badge-details">
 								<b><%= badge.title %></b><br />
-								<a href="#">See more...</a>
+								<%= link_to "details...", badge_path(badge) %>
 								<% if badge.badgehistories.total_followers(badge.id) != nil %>
 									<div id="badge-followers" class="well-follower">
 										<%= badge.badgehistories.total_followers(badge.id)%><br />
