@@ -20,6 +20,8 @@ class BadgesController < ApplicationController
     current_user.badge_id = params[:id]
     current_user.create_notablee_url
     @display_avatar = get_display_avatar
+    flash[:notice] = "Your notablee badge is now updated. Thanks for your support - continue to spread the word!"
+    redirect_to badge_path
   end
   
   private
