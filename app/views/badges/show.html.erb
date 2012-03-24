@@ -3,7 +3,7 @@
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="badge-unit">
-        <center><h1><%= @badge.title %></h1></center>
+        <center><h1><%= @badge.title.gsub("-", " ") %></h1></center>
 				<hr>
 			<div id="badge-show-content">
  						<div class="badge-unit-small span3" style="text-align:center">				
@@ -18,7 +18,7 @@
 			
 						<div class="span8">
 						
-							<h3>The official <%= @badge.title %> badge</h3>
+							<h3>The official <%= @badge.title.gsub("-", " ") %> badge</h3>
 						<p>
 							<%= @badge.description %>
 						</p>
