@@ -6,6 +6,8 @@
 #   cities = City.create( name: 'Chicago' , name: 'Copenhagen' )
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Badge.delete_all
+
 Badge.create!(:title => 'KONY-2012', 
                    :description => 'This is guy is really bad. Let us all get together and put a 
                                   stop to this madness. This is really bad.  Lorem ipsum. That 
