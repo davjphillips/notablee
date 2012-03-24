@@ -32,7 +32,7 @@
 																		)%>
 							<div id="badge-details">
 								<b><%= badge.title.gsub("-", " ") %></b><br />
-								<%= link_to "details...", badge_path(badge) %>
+								<%= link_to "More details...", badge_path(badge) %>
 								<% if badge.badgehistories.total_followers(badge.id) != nil %>
 									<div id="badge-followers" class="well-follower">
 										<%= badge.badgehistories.total_followers(badge.id)%><br />

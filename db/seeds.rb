@@ -204,22 +204,32 @@ Badge.create!( :title => 'Canada',
               :owner_id  => 1,
               :category => "Countries")
 
-Badge.create!( :title => 'RIP-Trayvon', 
-              :description => 'On the night of Feb.26th, Trayvon Martin, 17, was shot and killed by George Zimmerman, 28, in a suburban Orlando community.  
-                               The gunman has gone a month without being arrested, claiming self-defense.  There have been allegations of racism and an\
-                               investigation into how local police have handled the case.', 
-              :image_url => 'RIP-TM.png',
-              :owner_id  => 1,
-              :category => "Causes")
+# Badge.create!( :title => 'RIP-Trayvon', 
+#               :description => 'On the night of Feb.26th, Trayvon Martin, 17, was shot and killed by George Zimmerman, 28, in a suburban Orlando community.  
+#                                The gunman has gone a month without being arrested, claiming self-defense.  There have been allegations of racism and an\
+#                                investigation into how local police have handled the case.', 
+#               :image_url => 'RIP-TM.png',
+#               :owner_id  => 1,
+#               :category => "Causes")
 
-Badge.create!( :title => 'Trayvon-TM', 
+Badge.create!( :title => 'Trayvon-Martin', 
               :description => 'On the night of Feb.26th, Trayvon Martin, 17, was shot and killed by George Zimmerman, 28, in a suburban Orlando community.  
                                The gunman has gone a month without being arrested, claiming self-defense.  There have been allegations of racism and an\
                                investigation into how local police have handled the case.  Trayvon was wearing a hoodie at the time...inspiring the protest
                                 for the "Million Hoodie March" in NYC demanding justice for the young Trayvon.', 
-              :image_url => 'TM.png',
+              :image_url => 'trayvon-hoodies-up.png',
               :owner_id  => 1,
               :category => "Causes")
+              
+Badge.create!( :title => 'Trayvon-Martin-Hoodies-Up', 
+              :description => 'On the night of Feb.26th, Trayvon Martin, 17, was shot and killed by George Zimmerman, 28, in a suburban Orlando community.  
+                             The gunman has gone a month without being arrested, claiming self-defense.  There have been allegations of racism and an\
+                             investigation into how local police have handled the case.  Trayvon was wearing a hoodie at the time...inspiring the protest
+                              for the "Million Hoodie March" in NYC demanding justice for the young Trayvon.', 
+              :image_url => 'trayvon-hoodies-up.png',
+              :owner_id  => 1,
+              :category => "Causes")
+
               
 Badge.create!( :title => 'Remember-TM', 
               :description => 'On the night of Feb.26th, Trayvon Martin, 17, was shot and killed by George Zimmerman, 28, in a suburban Orlando community.  
@@ -230,22 +240,23 @@ Badge.create!( :title => 'Remember-TM',
               :owner_id  => 1,
               :category => "Causes")
               
-Badge.create!( :title => 'Trayvon-Martin', 
-              :description => 'On the night of Feb.26th, Trayvon Martin, 17, was shot and killed by George Zimmerman, 28, in a suburban Orlando community.  
-                               The gunman has gone a month without being arrested, claiming self-defense.  There have been allegations of racism and an\
-                               investigation into how local police have handled the case.  Trayvon was wearing a hoodie at the time...inspiring the protest
-                                for the "Million Hoodie March" in NYC demanding justice for the young Trayvon.', 
-              :image_url => 'RIPTM.png',
-              :owner_id  => 1,
-              :category => "Causes")               
-
-Badge.create!( :title => 'Hoodies-Up', 
-              :description => 'On the night of Feb.26th, Trayvon Martin, 17, was shot and killed by George Zimmerman, 28, in a suburban Orlando community.  
-                             The gunman has gone a month without being arrested, claiming self-defense.  There have been allegations of racism and an\
-                             investigation into how local police have handled the case. Trayvon was wearing a hoodie at the time...inspiring the protest
-                             for the "Million Hoodie March" in NYC demanding justice for the young Trayvon.', 
-              :image_url => 'hoodiesup.png',
-              :owner_id  => 1,
-              :category => "Causes")
+# Badge.create!( :title => 'Trayvon-Martin', 
+#               :description => 'On the night of Feb.26th, Trayvon Martin, 17, was shot and killed by George Zimmerman, 28, in a suburban Orlando community.  
+#                                The gunman has gone a month without being arrested, claiming self-defense.  There have been allegations of racism and an\
+#                                investigation into how local police have handled the case.  Trayvon was wearing a hoodie at the time...inspiring the protest
+#                                 for the "Million Hoodie March" in NYC demanding justice for the young Trayvon.', 
+#               :image_url => 'RIPTM.png',
+#               :owner_id  => 1,
+#               :category => "Causes")               
+# 
+# 
+# Badge.create!( :title => 'Hoodies-Up', 
+#               :description => 'On the night of Feb.26th, Trayvon Martin, 17, was shot and killed by George Zimmerman, 28, in a suburban Orlando community.  
+#                              The gunman has gone a month without being arrested, claiming self-defense.  There have been allegations of racism and an\
+#                              investigation into how local police have handled the case. Trayvon was wearing a hoodie at the time...inspiring the protest
+#                              for the "Million Hoodie March" in NYC demanding justice for the young Trayvon.', 
+#               :image_url => 'hoodiesup.png',
+#               :owner_id  => 1,
+#               :category => "Causes")
                   
                   
