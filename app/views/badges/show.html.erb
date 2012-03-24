@@ -5,7 +5,6 @@
       <div class="badge-unit">
         <center><h1><%= @badge.title %></h1></center>
 				<hr>
-       
 			<div id="badge-show-content">
  						<div class="badge-unit-small span3" style="text-align:center">				
 						<% if current_user %>
@@ -18,9 +17,8 @@
 						</div>
 			
 						<div class="span8">
-						<p>
+						
 							<h3>The official <%= @badge.title %> badge</h3>
-						</p>
 						<p>
 							<%= @badge.description %>
 						</p>
@@ -41,17 +39,17 @@
 			
       <div class="row">
 				<% if current_user %>
-				<div class="badge-unit-small span6"  style="text-align:center;">
+				<div class="badge-unit-small-bottom span6"  style="text-align:center;">
           <h2>Thank you @<%= current_user.username %> </h2>
            <p><h4>Your consideration and support means the world to us!</h3></p><br />
        	</div>
 				<% else %>
-				<div class="badge-unit-small span6"  style="text-align:center;">
+				<div class="badge-unit-small-bottom span6"  style="text-align:center;">
           <h2>Thank you :)</h2>
            <p><h4>Your consideration and support means the world to us!</h3></p><br />
        	</div>
 				<% end %>
-				<div class="badge-unit-small span6" style="text-align:center;">
+				<div class="badge-unit-small-bottom span6" style="text-align:center;">
           <h2>Follower Reach</h2>
 					<% if @badge.badgehistories.total_followers(@badge.id) != nil %>
 						<p><h1><%= @badge.badgehistories.total_followers(@badge.id)%></h1></p>
