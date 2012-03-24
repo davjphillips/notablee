@@ -85,11 +85,11 @@ Badge.create!( :title => 'USA',
                 :owner_id  => 1,
                 :category => "Countries")
 
-Badge.create!( :title => 'Roadtrippers', 
-                :description => '#ROADTRIPPERS #ROADTRIPPERS #ROADTRIPPERS', 
-                :image_url => 'roadtrippers.png',
-                :owner_id  => 1,
-                :category => "Organizations")
+# Badge.create!( :title => 'Roadtrippers', 
+#                 :description => '#ROADTRIPPERS #ROADTRIPPERS #ROADTRIPPERS', 
+#                 :image_url => 'roadtrippers.png',
+#                 :owner_id  => 1,
+#                 :category => "Organizations")
                 
 # Badge.create!( :title => 'CollegeDesis', 
 #                 :description => '#COLLEGE DESIS #COLLEGE DESIS #COLLEGE DESIS', 
@@ -219,11 +219,11 @@ Badge.create!( :title => 'Trayvon-Martin',
                                The gunman has gone a month without being arrested, claiming self-defense.  There have been allegations of racism and an\
                                investigation into how local police have handled the case.  Trayvon was wearing a hoodie at the time...inspiring the protest
                                 for the "Million Hoodie March" in NYC demanding justice for the young Trayvon.', 
-              :image_url => 'trayvon-hoodies-up.png',
+              :image_url => 'trayvon.png',
               :owner_id  => 1,
               :category => "Causes")
               
-Badge.create!( :title => 'Trayvon-Martin-Hoodies-Up', 
+Badge.create!( :title => 'Hoodies-Up', 
               :description => 'On the night of Feb.26th, Trayvon Martin, 17, was shot and killed by George Zimmerman, 28, in a suburban Orlando community.  
                              The gunman has gone a month without being arrested, claiming self-defense.  There have been allegations of racism and an\
                              investigation into how local police have handled the case.  Trayvon was wearing a hoodie at the time...inspiring the protest
