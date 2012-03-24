@@ -6,7 +6,7 @@
 #   cities = City.create( name: 'Chicago' , name: 'Copenhagen' )
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Badge.create!(:title => 'KONY 2012', 
+Badge.create!(:title => 'KONY-2012', 
                    :description => 'This is guy is really bad. Let us all get together and put a 
                                   stop to this madness. This is really bad.  Lorem ipsum. That 
                                   is all the lorem ipsum stuff that I know.', 
@@ -14,7 +14,7 @@ Badge.create!(:title => 'KONY 2012',
                    :owner_id  => 1,
                    :category => "Causes")
 
-Badge.create!( :title => 'Stop SOPA', 
+Badge.create!( :title => 'Stop-SOPA', 
                  :description => 'SOPA is really bad. Let us all get together and put a 
                                 stop to SOPA. This is really bad.  Lorem ipsum. We already
                                 stopped SOPA, but we feel the need to represent this badge anyway.', 
@@ -22,7 +22,7 @@ Badge.create!( :title => 'Stop SOPA',
                  :owner_id  => 1,
                  :category => "Causes")
 
-Badge.create!(:title => 'JOBS Act', 
+Badge.create!(:title => 'JOBS-Act', 
                    :description => 'Support the JOBS Act to allow businesses to raise money through 
                                     crowdfunding, publicly discuss that they are raising money and more', 
                    :image_url => 'jobsact.png',
