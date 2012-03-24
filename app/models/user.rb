@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
       @badge_name = Badge.find(self.badge_id).title
       begin 
         Twitter.follow("notableeme")
-        Twitter.update("I just added the #{@badge_name} #notablee badge. Get yours at www.notablee.me/badges/#{self.badge_id}")
+        Twitter.update("I just added the #{@badge_name} #notablee badge. Get yours at www.notablee.me/badges/#{Badge.find(self.badge_id).title}")
       rescue Twitter::Error::Forbidden
         #do nothing
       end
