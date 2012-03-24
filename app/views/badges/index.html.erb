@@ -10,10 +10,11 @@
 
 
 <div id ="myTabContent" class="tab-content">
-	<% @category_hash.keys.each do |category_string| %>
-		<div class = "tab-pane fade" id = "<%=category_string.downcase%>">
-				<% @category_hash[category_string].each do |badge| %>
-						<div class = "badge">
+	<% @category_hash.keys.each do |category| %>
+		<div class = "tab-pane fade" id = "<%=category.downcase%>">
+				<ul>
+				<% @category_hash[category].each do |badge| %>
+						<li class = "badge" style="display:inline-block;">
 							<%= image_tag @display_avatar, :class => "default-profile-index", :size => "128x128"%>
 							<%= link_to(image_tag(badge.image_url,
 																		:class=> "badge-index",
@@ -35,7 +36,7 @@
 									</div>		
 								<% end %>
 							</div>
-						</div>
+						</li>
 				<% end %>
 		</div>
 	<% end %>
