@@ -1,14 +1,18 @@
 class BadgesController < ApplicationController
    before_filter :require_sign_in, :only => :update
    
-   
   def index
-    @badges = Badge.all.sort_by!{ |badge| badge.users.count }.reverse
+    @badges = Badge.all
+    @category_hash = Hash.new {|hash, key| hash[key] = Array.new}
+    @badges.each do |badge|
+      @category_hash[badge.category] << badge
+    end
+    # @badges = Badge.all.sort_by!{ |badge| badge.users.count }.reverse
     @display_avatar = get_display_avatar
   end
 
   def show
-    @badge = Badge.find(params[:id])
+    @badge = Badge.find_by_title(params[:id])
     @display_avatar = get_display_avatar
   end
 
