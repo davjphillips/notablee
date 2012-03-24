@@ -59,6 +59,12 @@ Badge.create!( :title => 'India',
                 :owner_id  => 1,
                 :category => "Countries")
                 
+Badge.create!( :title => 'Switzerland', 
+                :description => '#SWITZERLAND #SWITZERLAND #SWITZERLAND', 
+                :image_url => 'switzerland.png',
+                :owner_id  => 1,
+                :category => "Countries")
+                
 Badge.create!( :title => 'Pakistan', 
                 :description => '#PAKISTAN #PAKISTAN #PAKISTAN', 
                 :image_url => 'pakistan.png',
