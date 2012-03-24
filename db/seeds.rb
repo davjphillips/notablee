@@ -260,5 +260,5 @@ Badge.create!( :title => 'Remember-TM',
 #               :image_url => 'hoodiesup.png',
 #               :owner_id  => 1,
 #               :category => "Causes")
-                  
+puts "It works!!!!"
                   
