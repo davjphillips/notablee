@@ -3,7 +3,12 @@ class BadgesController < ApplicationController
    
    
   def index
-    @badges = Badge.all.sort_by!{ |badge| badge.users.count }.reverse
+    @badges = Badge.all
+    @category_hash = Hash.new {|hash, key| hash[key] = Array.new}
+    @badges.each do |badge|
+      @category_hash[badge.category] << badge
+    end
+    # @badges = Badge.all.sort_by!{ |badge| badge.users.count }.reverse
     @display_avatar = get_display_avatar
   end
 
