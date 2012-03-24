@@ -155,6 +155,42 @@ Badge.create!( :title => 'Indonesia',
               :image_url => 'indonesia.png',
               :owner_id  => 1,
               :category => "Countries")
+              
+Badge.create!( :title => 'England', 
+              :description => '#', 
+              :image_url => 'england.png',
+              :owner_id  => 1,
+              :category => "Countries")
+              
+Badge.create!( :title => 'Ireland', 
+              :description => '#', 
+              :image_url => 'ireland.png',
+              :owner_id  => 1,
+              :category => "Countries")
+
+Badge.create!( :title => 'Italy', 
+              :description => '#', 
+              :image_url => 'italy.png',
+              :owner_id  => 1,
+              :category => "Countries")
+              
+Badge.create!( :title => 'Argentina', 
+              :description => '#', 
+              :image_url => 'argentina.png',
+              :owner_id  => 1,
+              :category => "Countries")
+              
+Badge.create!( :title => 'Russia', 
+              :description => '#', 
+              :image_url => 'russia.png',
+              :owner_id  => 1,
+              :category => "Countries")
+              
+Badge.create!( :title => 'France', 
+              :description => '#', 
+              :image_url => 'france.png',
+              :owner_id  => 1,
+              :category => "Countries")             
 
 Badge.create!( :title => 'Canada', 
               :description => '#CANADA #CANADA #CANADA', 
@@ -186,6 +222,11 @@ Badge.create!( :title => 'R.I.P. Trayvon Martin',
               :owner_id  => 1,
               :category => "Causes")               
 
+Badge.create!( :title => 'Hoodies Up', 
+              :description => '#', 
+              :image_url => 'hoodiesup.png',
+              :owner_id  => 1,
+              :category => "Causes")
 puts "it worked!"                  
                   
                   

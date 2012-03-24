@@ -1,7 +1,6 @@
 class BadgesController < ApplicationController
    before_filter :require_sign_in, :only => :update
    
-   
   def index
     @badges = Badge.all.sort_by!{ |badge| badge.users.count }.reverse
     @display_avatar = get_display_avatar
