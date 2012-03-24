@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
 
   def create_notablee_url
       original_avatar = MiniMagick::Image.open(self.avatar_url)
-      notablee_avatar = original_avatar.composite(MiniMagick::Image.open("app/assets/images/" + Badge.find_by_id(self.badge_id).image_url))
+      notablee_avatar = original_avatar.composite(MiniMagick::Image.open("app/assets/images/" + Badge.find(self.badge_id).image_url))
       notablee_avatar.write "#{self.username}.png"
       @notablee_url = File.open("#{self.username}.png")
     
