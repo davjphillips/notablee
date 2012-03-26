@@ -18,7 +18,7 @@ class BadgesController < ApplicationController
 
   def update
     Badgehistory.create!(:user_id => current_user.id, 
-                        :badge_id => params[:id], 
+                        :badge_id => Badge.find_by_title(params[:id]).id, 
                         :user_followers_snapshot => Twitter.user(current_user.username).followers_count
                         )
     current_user.badge_id = Badge.find_by_title(params[:id]).id
@@ -29,8 +29,6 @@ class BadgesController < ApplicationController
   end
   
   private
-  
-
   
   def require_sign_in
     if !current_user
