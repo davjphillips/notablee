@@ -14,7 +14,6 @@ gem 'mini_magick', '~> 3.4'
 gem 'chunky_png', '~> 1.2.5'
 gem 'bootstrap-sass', '~> 2.0.1'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

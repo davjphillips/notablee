@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  require 'open-uri'
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable, registerable, and :omniauthable
   devise :database_authenticatable,
@@ -48,6 +49,12 @@ class User < ActiveRecord::Base
   
   def self.get_user_image_url(username)
     Twitter.profile_image(username, :size => 'reasonably_small')
+  end
+  
+  def store_user_image_locally(image_url)
+    open("#{self.id}.png", 'wb') do |file|
+      file << open("#{self.avatar_url}").read 
+    end
   end
   
   def password_required?
