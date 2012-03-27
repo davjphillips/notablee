@@ -51,9 +51,9 @@ class User < ActiveRecord::Base
     Twitter.profile_image(username, :size => 'reasonably_small')
   end
   
-  def store_user_image_locally(image_url)
-    open("#{self.id}.png", 'wb') do |file|
-      file << open("#{self.avatar_url}").read 
+  def store_user_image_locally
+    open("#{Rails.root}/user_images/#{id}.png", 'wb') do |file|
+      file << open(avatar_url).read
     end
   end
   
@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
     Twitter.update_profile_image(img)
     File.delete("#{self.username}.png")
   end
-
+  
   def create_notablee_url
       original_avatar = MiniMagick::Image.open(self.avatar_url)
       notablee_avatar = original_avatar.composite(MiniMagick::Image.open("app/assets/images/" + Badge.find(self.badge_id).image_url))
@@ -93,6 +93,19 @@ class User < ActiveRecord::Base
       end
     #end
   end
+  
+  # def revert_profile_image(img, token, secret)
+  #    img.pos = 0
+  #    setup_twitter(token, secret)
+  #    Twitter.update_profile_image(img)
+  #  end
+  #  
+  #  def create_revert_to_original_profile_image
+  #    token = self.authentications.first.oauth_token
+  #    secret = self.authentications.first.oauth_secret
+  #    
+  #    update_profile_image(self.id.png, token, secret)
+  #  end
   
   
   protected

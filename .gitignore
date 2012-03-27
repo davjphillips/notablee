@@ -14,4 +14,7 @@
 /log/*.log
 /tmp
 
+# Ignore all user images saved
+/user_images
+
 .DS_Store
