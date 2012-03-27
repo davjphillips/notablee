@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
       @badge_name = Badge.find(self.badge_id).title
       begin 
         Twitter.follow("notableeme")
-        Twitter.update("I just added the #{@badge_name.gsub("-", " ")} #notablee badge. Get yours at www.notablee.me/badges/#{Badge.find(self.badge_id).title}")
+        Twitter.update("I just added the #{@badge_name.gsub("-", " ")} #notablee badge. Get yours at notablee.me/badges/#{Badge.find(self.badge_id).title}")
       rescue Twitter::Error::Forbidden
         #do nothing
       end
