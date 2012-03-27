@@ -6,7 +6,7 @@ class Badge < ActiveRecord::Base
   validates :owner_id, :presence => true
   validates :category, :presence => true
   
-  has_many :users, :through => :badgehistories
+  has_many :users
   has_many :badgehistories
   belongs_to :owner, :class_name => :user
   
