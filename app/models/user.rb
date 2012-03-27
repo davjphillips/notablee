@@ -51,11 +51,6 @@ class User < ActiveRecord::Base
     Twitter.profile_image(username, :size => 'reasonably_small')
   end
   
-  def store_user_image_locally
-    open("#{Rails.root}/user_images/#{id}.png", 'wb') do |file|
-      file << open(avatar_url).read
-    end
-  end
   
   def password_required?
     (authentications.empty? || !password.blank?) && super
@@ -94,19 +89,20 @@ class User < ActiveRecord::Base
     #end
   end
   
-  # def revert_profile_image(img, token, secret)
-  #    img.pos = 0
-  #    setup_twitter(token, secret)
-  #    Twitter.update_profile_image(img)
-  #  end
-  #  
-  #  def create_revert_to_original_profile_image
-  #    token = self.authentications.first.oauth_token
-  #    secret = self.authentications.first.oauth_secret
-  #    
-  #    update_profile_image(self.id.png, token, secret)
-  #  end
-  
+  def store_user_image_locally
+    open("#{Rails.root}/user_images/#{id}.png", 'wb') do |file|
+      file << open(avatar_url).read
+    end
+  end
+   
+  def revert_to_original_profile_image
+     token = self.authentications.first.oauth_token
+     secret = self.authentications.first.oauth_secret
+     
+     original_avatar = "#{Rails.root}/user_images/#{id}.png"
+     update_profile_image(original_avatar, token, secret)
+  end
+    
   
   protected
 

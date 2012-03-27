@@ -27,6 +27,10 @@ class BadgesController < ApplicationController
     redirect_to badge_path
   end
   
+  def destroy
+    revert_to_original_profile_image
+  end
+  
   private
   
   def require_sign_in
