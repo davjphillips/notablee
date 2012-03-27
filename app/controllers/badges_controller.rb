@@ -2,7 +2,7 @@ class BadgesController < ApplicationController
    before_filter :require_sign_in, :only => :update
    
   def index
-    @badges = Badge.all
+    @badges = Badge.all.sort_by!{ |badge| badge.users.count }.reverse
     @category_hash = Hash.new {|hash, key| hash[key] = Array.new}
     @badges.each do |badge|
       @category_hash[badge.category] << badge
