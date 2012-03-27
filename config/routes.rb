@@ -11,7 +11,7 @@ Notablee::Application.routes.draw do
   match 'users/password/edit' => redirect('/404.html')
     
   devise_for :users, :controllers => {:registrations => 'registrations'}
-  resources :badges, :only => [:index, :show, :update]
+  resources :badges, :only => [:index, :show, :update, :destroy]
   
   match "users/sign_in" => 'devise/sessions#new'
   match "auth/twitter"  => "authentications#new"
