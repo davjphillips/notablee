@@ -7,7 +7,6 @@ class BadgesController < ApplicationController
     @badges.each do |badge|
       @category_hash[badge.category] << badge
     end
-    # @badges = Badge.all.sort_by!{ |badge| badge.users.count }.reverse
     @display_avatar = get_display_avatar
   end
 
