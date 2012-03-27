@@ -20,7 +20,7 @@ class AuthenticationsController < ApplicationController
       user = User.new_user_with_auth(omniauth)
       if user.save
         flash[:notice] = "Signed up successfully. Welcome to notablee :)"
-        user.store_user_image_locally
+        #user.store_user_image_locally
         sign_in_and_redirect(:user, user)
       else
         session[:omniauth] = omniauth.except('extra')
