@@ -27,8 +27,10 @@ class BadgesController < ApplicationController
     redirect_to badge_path
   end
   
-  def destroy
-    revert_to_original_profile_image
+  def revert
+    current_user.revert_to_original_profile_image
+    flash[:notice] = "Your profile image is now back to normal. Thanks for using notablee!"
+    redirect_to root_path
   end
   
   private

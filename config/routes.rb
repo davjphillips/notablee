@@ -1,5 +1,6 @@
 Notablee::Application.routes.draw do
   put "badges/update"
+  put  "badges/revert"
 
   match '/auth/:provider/callback' => 'authentications#create'
   resources :authentications
@@ -11,11 +12,11 @@ Notablee::Application.routes.draw do
   match 'users/password/edit' => redirect('/404.html')
     
   devise_for :users, :controllers => {:registrations => 'registrations'}
-  resources :badges, :only => [:index, :show, :update, :destroy]
+  resources :badges, :only => [:index, :show, :update, :revert]
   
   match "users/sign_in" => 'devise/sessions#new'
   match "auth/twitter"  => "authentications#new"
-  
+    
   get "static_pages/home"
 
   root :to => "static_pages#home"

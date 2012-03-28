@@ -16,7 +16,7 @@
 <% end %>
 </ul>
 
-
+<%= link_to "REVERT IMAGE", badges_revert_path, :method => 'put' %>
 <div id ="myTabContent" class="tab-content">
 	<% @category_hash.keys.each_with_index do |category, index| %>
 		<% if index == 0 %>
