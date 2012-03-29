@@ -6,7 +6,7 @@ gem 'omniauth', '~>1.0.3'
 gem 'omniauth-twitter'
 gem 'twitter', '~>2.1.1'
 gem 'mini_magick', '~> 3.4'
-
+gem 'progstr-filer', :require => 'profstr-file'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

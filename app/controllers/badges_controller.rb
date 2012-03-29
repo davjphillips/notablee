@@ -1,6 +1,9 @@
 class BadgesController < ApplicationController
    before_filter :require_sign_in, :only => :update
-   
+  
+  def create
+  end
+  
   def index
     @badges = Badge.all.sort_by!{ |badge| badge.users.count }.reverse
     @category_hash = Hash.new {|hash, key| hash[key] = Array.new}
@@ -32,7 +35,7 @@ class BadgesController < ApplicationController
     flash[:notice] = "Your profile image is now back to normal. Thanks for using notablee!"
     redirect_to root_path
   end
-  
+ 
   private
   
   def require_sign_in
